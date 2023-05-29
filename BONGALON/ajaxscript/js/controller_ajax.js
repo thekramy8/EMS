@@ -8,7 +8,7 @@
     
         $.ajax({
             type: "POST",
-            url: "/ajaxscript/user_actionclass_ajax.php",
+            url: "./ajaxscript/user_actionclass_ajax.php",
             data: formData,
             processData: false,
             contentType: false,
@@ -52,7 +52,8 @@ $(document).on('click','#delete_user',function(e){
         if (result['isConfirmed']){
 
             $.ajax({
-                type:"POST",url:"/ajaxscript/user_actionclass_ajax.php",
+                type:"POST", 
+                url:"./ajaxscript/user_actionclass_ajax.php",
                 data:{'delete_user': true,'user_id':btnValue},
 
                 success: function(response)
@@ -60,15 +61,27 @@ $(document).on('click','#delete_user',function(e){
                     var result = jQuery.parseJSON(response); 
                     if(result.status == 500)
                     {
-                        
+                        Swal.fire(result.message);
+                    }else
+                    {
+                        alertify.set('notifier','positions','top-right'); 
+                        alertify.success(result.message); 
+                        loadContent('client');
                     }
                 }
             });
         }
   });
-});
+}); 
+
+
+// VIEW USER 
+
+
+
         
 
-     // DELTE TO DATABASE//
+   
 
 
+   
