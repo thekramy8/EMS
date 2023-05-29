@@ -1,4 +1,24 @@
+<!-- CALLING THE SSION WHO LOG IN -->
+<?php 
+      include('db_connection.php');
 
+      $sql = "SELECT user_fullname,user_role FROM tbl_user_list  WHERE id = ?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param('i', $_SESSION['id']);
+      $stmt->execute();
+      $result = $stmt->get_result();
+
+      if ($result->num_rows > 0) {
+          // output data of each row
+          while ($row = $result->fetch_assoc()) {
+              $user_fullname = $row["user_fullname"]; 
+              $user_role = $row["user_role"];
+            
+          }
+      }
+      $stmt->close();
+
+				?> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
   <a class="navbar-brand" href="#">
@@ -40,13 +60,13 @@
 
       <div class="dropdown" style="width:00px;">
         <a class="btn btn-dark dropdown-toggle mt-1 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:12px;margin-right:15px;background:#ADA06D;">
-           Juan Dela Cruz <br> Chief Lawyer
+           <?php echo $user_fullname ?> <br> <?php echo $user_role?>
         </a>
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <li><a class="dropdown-item" href="#">Settings</a></li>
             <li><a class="dropdown-item" href="#">Change Password</a></li>
-            <li><a class="dropdown-item" href="#" onclick="redirectToPage('index.php')">Log-out</a>
+            <li><a class="dropdown-item" href="#" onclick="confirmLogout()">Log-out</a>
           </li>
         </ul>
         </div>
