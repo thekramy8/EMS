@@ -37,7 +37,9 @@ $id = $_SESSION['id'];
      <script src="./vendor/sweetalert/sweetalert2@11.js" type="text/javascript"> </script>   
      <script src="./vendor/alertify/alertify.min.js" type="text/javascript"></script> 
         
-    <script>
+    <script> 
+
+
     $(document).ready(function() {
     var currentUrl = window.location.href; // Get the current page URL
 

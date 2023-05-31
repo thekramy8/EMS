@@ -18,7 +18,7 @@
     
                 if (res.status == 422) {
                     alertify.set('notifier', 'position', 'top-right');
-                    alertify.set('notifier', 'delay', 3);
+                    alertify.set('notifier', 'delay', 1);
                     alertify.success(res.message);
                 } else if (res.status == 200) {
                     alertify.set('notifier', 'position', 'top-right');

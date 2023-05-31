@@ -1,43 +1,110 @@
-if (isset($_POST['update_user'])) {
-    // Validate and sanitize inputs
-    $user_id = $_POST['user_id'];
-    $username = $_POST['username'];
-    $firstName = $_POST['firstName'];
-    $middleName = $_POST['middleName'];
-    $lastName = $_POST['lastName'];
-    $password = $_POST['password'];
-    $role = $_POST['editrole'];
-    $status = $_POST['editstatus'];
-    $archive = $_POST['uparchive'];
+<?php  
 
-    // Perform input validation and error handling
+include '../db_connection.php'; 
 
-    // Update the user in the database using prepared statements
-    $stmt = $conn->prepare("UPDATE tbl_users SET 
-        username = ?, 
-        firstname = ?, 
-        middlename = ?, 
-        lastname = ?, 
-        password = ?, 
-        role = ?, 
-        status = ?, 
-        archive = ? 
-        WHERE id = ?");
-    $stmt->bind_param("ssssssssi", $username, $firstName, $middleName, $lastName, $password, $role, $status, $archive, $user_id);
-    $result = $stmt->execute();
 
-    if ($result) {
-        $res = [
-            'status' => 200,
-            'message' => 'Update successfully.'
+if (isset($_GET['user_id'])) {
+    $userId = $_GET['user_id'];
+    
+    $selectID = "SELECT * FROM tbl_client_list WHERE id=?";
+    $stmt = $conn->prepare($selectID);
+    $stmt->bind_param("s", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 1) {
+        $user_record = $result->fetch_assoc();
+        
+        $res = [    
+            'status' =>  200,
+            'message' => 'Record Found.',
+            'data' => $user_record
         ];
+        echo json_encode($res);
+        return false;
     } else {
-        $res = [
-            'status' => 500,
-            'message' => 'Not updated successfully.'
+        $res = [    
+            'status' =>  404,
+            'message' => 'No record found.'
         ];
+        echo json_encode($res);
+        return false;
     }
-
-    echo json_encode($res);
-    return false;
 }
+
+
+
+
+
+//UPDATE LIST IN DATABASE
+
+    if(isset($_POST['update_user']))
+    {   
+        //// Validate and sanitize inputs 
+        $user_id = $_POST['user_id'];    
+
+        $firstName = $_POST['editfirstName'];
+        $middleName = $_POST['editmiddleName'];
+        $lastName = $_POST['editlastName'];  
+        $gender = $_POST['editGender'];  
+        $emailOne = $_POST['editemailOne'];  
+        $emailTwo = $_POST['editemailTwo'];        
+        $contactOne = $_POST['editcontactOne']; 
+        $contactTwo = $_POST['editcontactTwo']; 
+        $addressOne = $_POST['editaddress_one']; 
+        $addressTwo = $_POST['editaddress_two']; 
+
+      
+
+
+     $editUser = $conn->prepare("UPDATE tbl_client_list SET
+         firstname =?,
+         middlename=?,
+         lastname=?,
+         gender=?,
+         first_email=?,
+         second_email=?,
+         first_contact=?,
+         second_contact=?, 
+         first_address=?,
+         second_address=? WHERE id = ?"); 
+
+         $editUser->bind_param("ssssssssssi",
+
+         $firstName,
+         $middleName,
+         $lastName,
+         $gender, 
+         $emailOne,
+         $emailTwo,
+         $contactOne,
+         $contactTwo,
+         $addressOne,
+         $addressTwo,
+         $user_id); 
+
+         $result = $editUser->execute();
+
+         if ($result) {
+            $res = [
+                'status' => 200,
+                'message' => 'Update successfully.'
+            ];
+        } else {
+            $res = [
+                'status' => 500,
+                'message' => 'Not updated successfully.'
+            ];
+        }
+    
+        echo json_encode($res);
+        return false;
+    } 
+
+
+
+
+
+
+?>
+

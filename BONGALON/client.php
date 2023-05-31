@@ -135,7 +135,7 @@ $('#clientList').DataTable({});
 </div>
  
 
-<div class="modal fade" id="editIndividual"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="editIndividual"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -213,19 +213,113 @@ $('#clientList').DataTable({});
                     <input type="text" id="editaddress_two" name="editaddress_two"  class="form-control"  placeholder="Address 2">
                     </div>
                 </div>
+                <button  id="editClientBtns" class="btn btn-warning">Save changes</button>
             </form> 
-
+            </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="submit" class="btn btn-warning">Save changes</button> -->
-                    <button type="submit" id="editClientBtn"class="btn btn-warning">Save changes</button>
+                 
                 </div>
       </div>
 
     </div>
   </div>
 </div> 
-<!-- Modal -->
+ 
+
+ <div class="modal fade" id="editindividual" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Add Individual </h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <form action="" id="updateClientForm"> 
+            <div class="row mb-2 ">
+                          
+                 <div id ="errorMessage"class="alert alert-warning d-none"></div> 
+                  <div class="col"> 
+                  <input type="hidden" name="user_id" id="user_id">  
+
+                   <label class="form-label">Lastname:</label>
+                 <input type="text" class="form-control" id="editlastName" name="editlastName"  placeholder="LastName">
+                   </div>
+
+                  <div class="col">
+                  <label class="form-label">FirstName:</label>
+                 <input type="text" class="form-control" name="editfirstName" id="editfirstName" placeholder="Firstname">
+                   </div>
+
+                  <div class="col">
+                  <label class="form-label">Middlename:</label>
+                 <input type="text" class="form-control" id="editmiddleName" name="editmiddleName" placeholder="MiddleName">
+                   </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                    <label class="form-label">Gender:</label>
+                    <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="editGender" id="editGender">
+                    <option value="0">SELECT</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    </select>
+                  </div>
+
+                  <div class="col">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                 <input type="email" class="form-control"  id="editemailOne"  name="editemailOne" >
+                  </div>
+
+                  <div class="col">
+                  <label for="exampleInputEmail1" class="form-label">Alternate Email</label>
+                 <input type="email" class="form-control" id="editemailTwo" name ="editemailTwo" aria-describedby="emailHelp">
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                        <div class="col">
+                    <label class="form-label">Contact No:</label>
+                    <input type="text" name="editcontactOne" class="form-control" id="editcontactOne" placeholder="Contact no">
+
+                    </div>
+
+                    <div class="col">
+                    <label class="form-label">Alternate No:</label>
+                    <input type="text" name="editcontactTwo" class="form-control" id="editcontactTwo" placeholder="Altername no">
+                    </div>
+                </div>
+
+
+                <div class="row">
+                        <div class="col">
+                    <label class="form-label">Address 1:</label>
+                    <input type="text" id="editaddress_one" name="editaddress_one" class="form-control" placeholder="Address 1">
+
+                    </div>
+
+                    <div class="col">
+                    <label class="form-label">Address 2:</label>
+                    <input type="text" id="editaddress_two" name="editaddress_two"  class="form-control"  placeholder="Address 2">
+                    </div>
+                </div>
+                            <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="submit" class="btn btn-warning">Save changes</button> -->
+                    <button type="submit" class="btn btn-warning">Save changes</button>
+                </div>
+            </form>
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+
+
+
 
 <div class="row" >
   <div class="col">
@@ -337,14 +431,17 @@ $('#clientList').DataTable({});
 
 
 <script>
+    // const xhr = new XMLHttpRequest();
+    //const abortController = new AbortController(); 
+    //let isAjaxExecuted = false;
     //EDIT USER INTO DATABASE
     $(document).on('click','#edit_userbtn',function(){ 
       
       var user_id = $(this).val();
-      //onsole.log(user_id);
+ 
 
       $.ajax({
-            type:"GET",url:"./ajaxscript/user_actionclass_ajax.php?user_id="+user_id,
+            type:"GET",url:"./ajaxscript/update.php?user_id="+user_id,
 
             success: function(response)
             {
@@ -373,7 +470,7 @@ $('#clientList').DataTable({});
                     $("#editaddress_one").val(result.data.first_address);   
                     $("#editaddress_two").val(result.data.second_address);   
                    
-                  $("#editIndividual").modal("show"); 
+                  $("#editindividual").modal("show"); 
 
                 }
             } 
@@ -384,19 +481,67 @@ $('#clientList').DataTable({});
     });
  
     /// FOR SUBMITTING UPDATE INTO DATABASE 
+   
+   
 
-    // $(document).on('submit',"#updateClient",function(e){
+
+//     $(document).on('click', '#editClientBtn', function(e) {
+//     e.preventDefault();
+
+//     var formData = new FormData($("#updateClient")[0]);
+//     formData.append("update_user", true);
+
+//     $.ajax({
+//         type: "POST",
+//         url: "./ajaxscript/user_actionclass_ajax.php",
+//         data: formData,
+//         processData: false,
+//         contentType: false,
+//         success: function(response) {
+//             var result = jQuery.parseJSON(response);
+//             if (result.status == 422) {
+//                 $('#errorMessage').removeClass('d-none');
+//                 $('#errorMessage').text(result.message);
+//             } else if (result.status == 200) {
+//                 $('#errorMessage').removeClass('d-none');
+
+                
+//                 $('#editIndividual').modal('hide');
+//                 $('#updateClient')[0].reset(); 
+
+
+
+//                 alertify.set('notifier', 'delay', 2);
+//                 alertify.set('notifier', 'positions', 'top-right');
+//                 alertify.success(result.message);
+//                 console.log(result.message);
+               
+//                 loadContent('client');  
+
+                
+//             }
+//         }
+//     });
+// });
+
+      
+        </script>   
+        <script>
+    //        $(document).on('submit',"#updateClientForm",function(e){
     //     e.preventDefault();
-
+    //           if (isAjaxExecuted) {
+    //       return;
+    //     }
     //     var formData = new FormData(this);
     //     formData.append("update_user",true);
     //     $.ajax({ 
-    //       type:"POST",url:"./ajaxscript/user_actionclass_ajax.php",data:formData,
+    //       type:"POST",url:"./ajaxscript/update.php",data:formData,
     //       processData:false,contentType:false,
+        
     //       success:function(response)
     //       {
     //           var result = jQuery.parseJSON(response); 
-    //           if(result.status ==- 422)
+    //           if(result.status == 422)
     //           {
     //               $('#errorMessage').removeClass('d-none');   
     //               $('#errorMessage').text(result.message);
@@ -405,64 +550,124 @@ $('#clientList').DataTable({});
     //           {
     //            $('#errorMessage').removeClass('d-none'); 
                
-    //             $('editIndividual').modal('hide');
-    //            $('#updateClient')[0].reset();
+    //            $('#editIndividual').modal('hide');
+    //            $('#updateClientForm')[0].reset();
 
     //               alertify.set('notifier','positions','top-right'); 
     //               alertify.success(result.message); 
-                  
-    //               loadContent('client');
-    //           }
-    //       }
+              
+             
+                      
+                 
+    //               $('#clientList').load(location.href+ " #clientList");;
+    //               $("#editindividual").modal("hide"); 
+    //               console.log(result.message);
+    //           } 
+              
+
+            
+    //           loadContent('client'); 
+    //          // abortController.abort();
+    //          $(document).off('submit', '#updateClientForm');
+    //       } 
 
 
     //     });
+    //   //  xhr.abort(); 
     // });
-    $(document).on('click', '#editClientBtn', function(e) {
-    e.preventDefault();
 
-    var formData = new FormData($("#updateClient")[0]);
-    formData.append("update_user", true);
-
-    $.ajax({
-        type: "POST",
-        url: "./ajaxscript/user_actionclass_ajax.php",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-            var result = jQuery.parseJSON(response);
-            if (result.status == 422) {
-                $('#errorMessage').removeClass('d-none');
-                $('#errorMessage').text(result.message);
-            } else if (result.status == 200) {
-                $('#errorMessage').removeClass('d-none');
-
-                alertify.set('notifier', 'positions', 'top-right');
-                alertify.success(result.message);
+        </script>
 
 
-                $('#editIndividual').modal('hide');
-                $('#updateClient')[0].reset();
+<script>
+//   $(document).on('click', '#editClientBtn', function(e) {
+//     e.preventDefault();
+    
+//     // Disable the button
+//     $(this).prop('disabled', true);
 
+//     var formData = new FormData($("#updateClient")[0]);
+//     formData.append("update_user", true);
+
+//     $.ajax({
+//         type: "POST",
+//         url: "./ajaxscript/user_actionclass_ajax.php",
+//         data: formData,
+//         processData: false,
+//         contentType: false,
+//         success: function(response) {
+//             var result = jQuery.parseJSON(response);
+//             if (result.status == 422) {
+//                 $('#errorMessage').removeClass('d-none');
+//                 $('#errorMessage').text(result.message);
+//             } else if (result.status == 200) {
+//                 $('#errorMessage').removeClass('d-none');
+
+//                   alertify.set('notifier', 'delay', 1);
+//                  alertify.set('notifier', 'position', 'top-right');
+//                  alertify.success(result.message);
+
+//                  $('#editIndividual').modal('hide');
+//                 $('#updateClient')[0].reset(); // Reset the form fields
+
+//                 loadContent('client'); 
                
-                loadContent('client'); 
-                
-            }
-        }
-    });
-});
+//             }
+            
+//             // Enable the button
+//             $('#editClientBtn').prop('disabled', false);
+//         },
+//         error: function() {
+//             // Enable the button in case of an error
+//             $('#editClientBtn').prop('disabled', false);
+//         }
+//     });
+// });
 
-
-</script> 
+</script>
 
 <script> 
   
-//   $(document).ready(function () {
-//     $('#clientList').DataTable({});
-// }); 
+  // $(document).ready(function(e) {
+  //         $(document).on('click', '#editClientBtns', function(e) {
+  //         e.preventDefault(); 
+  //         e.stopPropagation();
+
+  //         var formData = new FormData($("#editUserForm")[0]);
+  //         formData.append("update_user", true);
+
+  //         $.ajax({
+  //           type:"POST",
+  //           url:"./ajaxscript/update.php",
+  //           data:formData,
+  //           processData:false,
+  //           contentType:false,
+  //           success:function(response){
+  //             var result = jQuery.parseJSON(response);
+  //             if(result.status == 500){
+  //               $('#errorMessage').removeClass('d-none');   
+  //               $('#errorMessage').text(res.message);   
+  //             }else if(result.status == 200)
+  //             {
+                    
+  //               $('#editIndividual').modal('hide');
+  //             // $('#updateClient')[0].reset(); 
+
+
+                  
+  //             loadContent('client');
+  //             console.log(result.message);
+  //             }
+           
+  //           }
+
+  //         });
+  //       });
+  //       });
 </script>
-  <script src="./src/js/routing.js"></script>
+
+  <script src="./src/js/routing.js"></script> 
+  <script src="./ajaxscript/js/update.js"></script>
   <script src="./ajaxscript/js/controller_ajax.js"></script>   
 
   
