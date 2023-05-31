@@ -1,4 +1,5 @@
     
+
    // SAVING TO DATABASE//
     $('#saveClientBtn').on('click', function(e) {
         e.preventDefault();
@@ -34,7 +35,7 @@
         });
     })
        // SAVING TO DATABASE//
-
+ 
       // DELETE TO DATABASE// 
 $(document).on('click','#delete_user',function(e){
        e.preventDefault();
@@ -76,10 +77,48 @@ $(document).on('click','#delete_user',function(e){
 
 
 // VIEW USER 
+$(document).on('click','#view_user',function(){ 
+
+    var user_id = $(this).val();
+ 
+
+    $.ajax({
+        type:'GET', 
+        url:"./ajaxscript/user_actionclass_ajax.php?view_user="+user_id,
+        success:function(response){ 
+            var result = jQuery.parseJSON(response);
+            if(result.status == 404)
+            {
+                Swal.Fire(result.message);
+                console.log(user_id+"sample");
+            }else if(result.status == 200){ 
+                // $('#viewlastname').text("Name: "+  result.data.firstname+ " "+ result.data.middlename+ " "+  result.data.lastname);
+                $('#viewlastname').html("Name: <span class='name'>" + result.data.firstname + " "+ result.data.middlename+" "+ result.data.lastname+
+                "</span><br>" +"Gender: <span class='name'>" + result.data.gender + "</span><br>"+
+                "Email: <span class='name'>" + result.data.first_email + 
+                "</span><br>"+"Alternate Email: <span class='name'>" + result.data.second_email + "</span><br>"
+                +"</span>"+"Contact: <span class='name'>" + result.data.first_contact + "</span><br>"+
+                "</span>"+"Contact: <span class='name'>" + result.data.second_contact + "</span><br>" 
+                +"</span>"+"Address: <span class='name'>" + result.data.first_address + "</span><br>"
+                +"</span>"+"Address: <span class='name'>" + result.data.second_address + "</span><br>");
+               
+
+                $('#viewUserModal').modal('show');  
+               
+            }
+
+        }
+
+
+    });
+    
+});  
+ 
 
 
 
-        
+
+    
 
    
 

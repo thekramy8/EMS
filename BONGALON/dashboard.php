@@ -1,3 +1,10 @@
+<?php
+
+include 'db_connection.php';
+if(!isset($_SESSION['id'])) header("location:index.php");
+$id = $_SESSION['id'];
+?>  
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,17 +25,18 @@
 <body>
 
    <?php include 'navbar.php';  ?>
-    <main id="content">
-    <div class="row p-3 m-3"id="loadContent"> 
+   
+    <div class="row m-5 "id="loadContent"style="height:100%;"> 
+    
     </div>
-    </div>
-    </main>
+  
  
     <script src="./vendor/js/bootstrap.bundle.min.js" type="text/javascript"></script>
   
   
      <script src="./vendor/sweetalert/sweetalert2@11.js" type="text/javascript"> </script>   
-     <script src="./vendor/alertify/alertify.min.js" type="text/javascript"></script>
+     <script src="./vendor/alertify/alertify.min.js" type="text/javascript"></script> 
+        
     <script>
     $(document).ready(function() {
     var currentUrl = window.location.href; // Get the current page URL
@@ -68,13 +76,13 @@
     }
 });
 
-
+ 
 function timedRefresh(timeoutPeriod) {
     setTimeout("location.reload(true);",timeoutPeriod);   
       }
 
     </script> 
-
+ 
     <!-- <script>
   function redirectToPage(pageUrl) {
     window.location.href = pageUrl;
@@ -98,11 +106,7 @@ function timedRefresh(timeoutPeriod) {
                 }
                 }) 
             }
-        
     </script> 
-
-
-  
 </body> 
 
 </html>

@@ -58,7 +58,7 @@
         <div class="col d-flex justify-content-center">
         <img src="./vendor/img/users.jpg" alt="Logo" width="45" height="45" class="d-inline-block align-text-top " style="border-radius:50%;margin-right:10px; margin-top:5px;">
 
-      <div class="dropdown" style="width:00px;">
+      <div class="dropdown" style="width:10px;">
         <a class="btn btn-dark dropdown-toggle mt-1 " href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="font-size:12px;margin-right:15px;background:#ADA06D;">
            <?php echo $user_fullname ?> <br> <?php echo $user_role?>
         </a>
