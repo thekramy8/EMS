@@ -19,7 +19,7 @@
       $stmt->close();
 
 				?> 
-        
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
   <a class="navbar-brand" href="#">
@@ -42,13 +42,13 @@
           <a class="nav-link" aria-current="page" style="color:#ADA06D;">CASES</a>
         </li>
 
-        <!-- <li class="nav-item " >
+        <li class="nav-item " >
           <a class="nav-link " aria-current="page" href="userlist" data-page="userlist"  style="color:#ADA06D;">USERS</a>
-        </li> -->
-
-        <li class="nav-item" >
-          <a class="nav-link active" aria-current="page" href="userlist" data-page="userlist" style="color:#ADA06D;">CLIENTS</a>
         </li>
+
+        <!-- <li class="nav-item" >
+          <a class="nav-link active" aria-current="page" href="userlist" data-page="userlist" style="color:#ADA06D;">CLIENTS</a>
+        </li> -->
 
         <li class="nav-item " >
           <a class="nav-link" aria-current="page" href="#" style="color:#ADA06D;">TASK</a>

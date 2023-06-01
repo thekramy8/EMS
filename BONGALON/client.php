@@ -317,16 +317,12 @@ $('#clientList').DataTable({});
   </div>
 </div> 
 
-
-
-
-
-<div class="row" >
+<div class="row " >
   <div class="col">
        <div class="card "style="width:100%;">
             <div class="card-header bg-transparent fw-bold"style="border-bottom:5px solid #C6A984;">
                 <div class="row">
-                    <div class="col-2 mt-2" style="width:100px;">
+                    <div class="col-2 mt-1" style="width:100px;">
                         CLIENT
 
                     </div>
@@ -344,15 +340,17 @@ $('#clientList').DataTable({});
                     </div>
                 </div>
             </div>
-            <div class="card-body p-2">
+            <div class="card-body p-1 "> 
+
             <span class="text-center">
             <img src="./vendor/img/bullet-list.png" alt="Logo" width="30" height="30" >
-              CLIENT LIST
+              INDIVIDUAL CLIENT LIST
             </span>
-            <div class="row mt-2 " style="overflow:auto;">
-                <div class="table-responsive border-danger p-3" >
 
-                <table id="clientList" class="table  table-hover "style="width: 100%; font-size:11px;">
+            <div class="row mt-2 m-4">
+                <div class="table-responsive " style="overflow:auto;">
+
+                <table id="clientList" class="table table-hover "style="width:100%;font-size:11px; ">
         <thead >
             <tr > 
                 <th class="text-center" >NO.</th>
@@ -399,7 +397,8 @@ $('#clientList').DataTable({});
                  <td  class="text-center" ><?php echo $row['second_contact'] ?></td> 
                  <td  class="text-center" ><?php echo $row['first_address'] ?></td> 
                  <td  class="text-center" ><?php echo $row['second_address'] ?></td>                   
-                <center>
+                   
+                 <center>
                   <td> 
                     <style>
                       .btn-font{
@@ -426,6 +425,8 @@ $('#clientList').DataTable({});
         </div>
        </div>
        </div>
+
+       
 <!-- SCRIPT HERE --> 
  
 
@@ -474,197 +475,13 @@ $('#clientList').DataTable({});
 
                 }
             } 
-
       });
-
           
     });
  
-    /// FOR SUBMITTING UPDATE INTO DATABASE 
-   
-   
 
-
-//     $(document).on('click', '#editClientBtn', function(e) {
-//     e.preventDefault();
-
-//     var formData = new FormData($("#updateClient")[0]);
-//     formData.append("update_user", true);
-
-//     $.ajax({
-//         type: "POST",
-//         url: "./ajaxscript/user_actionclass_ajax.php",
-//         data: formData,
-//         processData: false,
-//         contentType: false,
-//         success: function(response) {
-//             var result = jQuery.parseJSON(response);
-//             if (result.status == 422) {
-//                 $('#errorMessage').removeClass('d-none');
-//                 $('#errorMessage').text(result.message);
-//             } else if (result.status == 200) {
-//                 $('#errorMessage').removeClass('d-none');
-
-                
-//                 $('#editIndividual').modal('hide');
-//                 $('#updateClient')[0].reset(); 
-
-
-
-//                 alertify.set('notifier', 'delay', 2);
-//                 alertify.set('notifier', 'positions', 'top-right');
-//                 alertify.success(result.message);
-//                 console.log(result.message);
-               
-//                 loadContent('client');  
-
-                
-//             }
-//         }
-//     });
-// });
-
-      
         </script>   
-        <script>
-    //        $(document).on('submit',"#updateClientForm",function(e){
-    //     e.preventDefault();
-    //           if (isAjaxExecuted) {
-    //       return;
-    //     }
-    //     var formData = new FormData(this);
-    //     formData.append("update_user",true);
-    //     $.ajax({ 
-    //       type:"POST",url:"./ajaxscript/update.php",data:formData,
-    //       processData:false,contentType:false,
-        
-    //       success:function(response)
-    //       {
-    //           var result = jQuery.parseJSON(response); 
-    //           if(result.status == 422)
-    //           {
-    //               $('#errorMessage').removeClass('d-none');   
-    //               $('#errorMessage').text(result.message);
-    //           }
-    //           else if(result.status == 200)
-    //           {
-    //            $('#errorMessage').removeClass('d-none'); 
-               
-    //            $('#editIndividual').modal('hide');
-    //            $('#updateClientForm')[0].reset();
-
-    //               alertify.set('notifier','positions','top-right'); 
-    //               alertify.success(result.message); 
-              
-             
-                      
-                 
-    //               $('#clientList').load(location.href+ " #clientList");;
-    //               $("#editindividual").modal("hide"); 
-    //               console.log(result.message);
-    //           } 
-              
-
-            
-    //           loadContent('client'); 
-    //          // abortController.abort();
-    //          $(document).off('submit', '#updateClientForm');
-    //       } 
-
-
-    //     });
-    //   //  xhr.abort(); 
-    // });
-
-        </script>
-
-
-<script>
-//   $(document).on('click', '#editClientBtn', function(e) {
-//     e.preventDefault();
     
-//     // Disable the button
-//     $(this).prop('disabled', true);
-
-//     var formData = new FormData($("#updateClient")[0]);
-//     formData.append("update_user", true);
-
-//     $.ajax({
-//         type: "POST",
-//         url: "./ajaxscript/user_actionclass_ajax.php",
-//         data: formData,
-//         processData: false,
-//         contentType: false,
-//         success: function(response) {
-//             var result = jQuery.parseJSON(response);
-//             if (result.status == 422) {
-//                 $('#errorMessage').removeClass('d-none');
-//                 $('#errorMessage').text(result.message);
-//             } else if (result.status == 200) {
-//                 $('#errorMessage').removeClass('d-none');
-
-//                   alertify.set('notifier', 'delay', 1);
-//                  alertify.set('notifier', 'position', 'top-right');
-//                  alertify.success(result.message);
-
-//                  $('#editIndividual').modal('hide');
-//                 $('#updateClient')[0].reset(); // Reset the form fields
-
-//                 loadContent('client'); 
-               
-//             }
-            
-//             // Enable the button
-//             $('#editClientBtn').prop('disabled', false);
-//         },
-//         error: function() {
-//             // Enable the button in case of an error
-//             $('#editClientBtn').prop('disabled', false);
-//         }
-//     });
-// });
-
-</script>
-
-<script> 
-  
-  // $(document).ready(function(e) {
-  //         $(document).on('click', '#editClientBtns', function(e) {
-  //         e.preventDefault(); 
-  //         e.stopPropagation();
-
-  //         var formData = new FormData($("#editUserForm")[0]);
-  //         formData.append("update_user", true);
-
-  //         $.ajax({
-  //           type:"POST",
-  //           url:"./ajaxscript/update.php",
-  //           data:formData,
-  //           processData:false,
-  //           contentType:false,
-  //           success:function(response){
-  //             var result = jQuery.parseJSON(response);
-  //             if(result.status == 500){
-  //               $('#errorMessage').removeClass('d-none');   
-  //               $('#errorMessage').text(res.message);   
-  //             }else if(result.status == 200)
-  //             {
-                    
-  //               $('#editIndividual').modal('hide');
-  //             // $('#updateClient')[0].reset(); 
-
-
-                  
-  //             loadContent('client');
-  //             console.log(result.message);
-  //             }
-           
-  //           }
-
-  //         });
-  //       });
-  //       });
-</script>
 
   <script src="./src/js/routing.js"></script> 
   <script src="./ajaxscript/js/update.js"></script>
