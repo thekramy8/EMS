@@ -22,7 +22,7 @@ $('#userLists').DataTable({});
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title " id="exampleModalLabel">Add New User</h6>
+        <h6 class="modal-title " id="exampleModalLabel" >Add New User</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -35,7 +35,7 @@ $('#userLists').DataTable({});
                 <input type="text" id="add_entity_firstname" name="add_entity_firstname" class="form-control" required>
 
                 <label for="add_entity_firstname"class="form-label">User Role:</label>
-                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_gender" id="add_entity_gender" name="add_entity_gender">
+                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_role" id="add_entity_gender" name="add_entity_role">
                     <option value="Chief Lawyer">Chief Lawyer</option>
                     <option value="Associate Lawyer">Associate Lawyer</option>
                     <option value="Legal Secretary">Legal Secretary</option>
@@ -52,7 +52,7 @@ $('#userLists').DataTable({});
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-warning">Save changes</button>
+        <button type="button" id="submit_entity" class="btn btn-warning">Save changes</button>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@ $('#userLists').DataTable({});
         <div class="card-header" style="border-bottom: 5px solid #C6A984;">
             <div class="row"> 
                 <div class="col-2  mt-1 fw-bold p-2" style="width:100px;">USERS</div>
-                <div class="col-2 p-2"><button id="add_entity_btn" class="btn-sm btn btn-dark" style="background:#ADA06D;">Add</button></div>
+                <div class="col-2 p-2"><button id="add_entity_btn" class="btn-sm btn btn-dark"data-bs-toggle="modal" data-bs-target="#addEntityModal" style="background:#ADA06D;">Add</button></div>
             </div>
             
         </div>
@@ -129,20 +129,15 @@ $('#userLists').DataTable({});
 </div>  
 
 <!-- SCRIPT HERE -->
-
+<script src="./ajaxscript/js/controller_ajax.js"></script>
 <script>
 
     $(document).on('click','#view_user_ent',function(e){
         e.preventDefault(); 
-        console.log('CLICK'); 
-        $('#addEntityModal').modal('show');
+        
+      
     });
 </script> 
 
-<script>
-    $(document).on('click','#add_entity_btn',function(e){
-        e.preventDefault();
-        $('#addEntityModal').modal('show');
-    });
-</script>
+
 

@@ -6,6 +6,7 @@
     
         var formData = new FormData($('#saveuserForm')[0]);
         formData.append("save_user", true);
+        
     
         $.ajax({
             type: "POST",
@@ -18,7 +19,7 @@
     
                 if (res.status == 422) {
                     alertify.set('notifier', 'position', 'top-right');
-                    alertify.set('notifier', 'delay', 1);
+                    alertify.set('notifier', 'delay', 1); 
                     alertify.success(res.message);
                 } else if (res.status == 200) {
                     alertify.set('notifier', 'position', 'top-right');
@@ -112,8 +113,10 @@ $(document).on('click','#view_user',function(){
 
     });
     
-});  
- 
+});   
+
+
+
 
 
 
