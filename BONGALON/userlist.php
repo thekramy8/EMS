@@ -22,15 +22,37 @@ $('#userLists').DataTable({});
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h6 class="modal-title " id="exampleModalLabel">Add New User</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+
+        <form action=""id="add_entity_form">
+                <label for="add_entity_lastname"class="form-label">LastName:</label>
+                <input type="text" id="add_entity_lastname" name="add_entity_lastname" class="form-control" required>
+              
+                <label for="add_entity_firstname"class="form-label">FirstName:</label>
+                <input type="text" id="add_entity_firstname" name="add_entity_firstname" class="form-control" required>
+
+                <label for="add_entity_firstname"class="form-label">User Role:</label>
+                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_gender" id="add_entity_gender" name="add_entity_gender">
+                    <option value="Chief Lawyer">Chief Lawyer</option>
+                    <option value="Associate Lawyer">Associate Lawyer</option>
+                    <option value="Legal Secretary">Legal Secretary</option>
+               </select> 
+
+               <label for="add_entity_email" class="form-label">Email</label>
+               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email" required>
+                
+               <label for="add_entity_password" class="form-label">Password</label>
+               <input type="text" id="add_entity_password" name="add_entity_password" class="form-control">
+
+        </form>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-warning">Save changes</button>
       </div>
     </div>
   </div>
@@ -43,16 +65,8 @@ $('#userLists').DataTable({});
    <div class="card">
         <div class="card-header" style="border-bottom: 5px solid #C6A984;">
             <div class="row"> 
-                <div class="col-2 mt-2 fw-bold" style="width:100px;">USERS</div>
-                <div class="col"> <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"style="font-size:14px;background:#ADA06D;">
-                        ADD
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addIndividual">Chief Laywer</a></li>
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addIndividual">Associate Lawyer</a></li>
-                    <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModal">Legal Secretary</a></li>
-                    </ul>
-                </div>
+                <div class="col-2  mt-1 fw-bold p-2" style="width:100px;">USERS</div>
+                <div class="col-2 p-2"><button id="add_entity_btn" class="btn-sm btn btn-dark" style="background:#ADA06D;">Add</button></div>
             </div>
             
         </div>
@@ -63,10 +77,9 @@ $('#userLists').DataTable({});
               USERS LIST
             </span> 
 
-            <div class="row mt-3" style="overflow:auto;"> 
-                <div class="table-responsive p-3">
-            
-                <table id="userLists" class="table  table-hover "style="width: 100%; font-size:11px;">
+            <div class="row mt-3 m-3" style="overflow:auto;"> 
+                <div class="table-responsive  p-3">
+                <table id="userLists" class="table  table-hover "style="width:100%;font-size:12px;">
                   <thead> 
                     <tr>    
                         <th class="text-center">No.</th>
@@ -93,16 +106,14 @@ $('#userLists').DataTable({});
                                 <td class="text-center"><?php echo $row['user_role']?></td>      
                  <center>
                   <td> 
-                  <div class="container">
+                 
 
-                  <div class="row justify-content-center">
-                 <div class="col-1 text-center"><button class="btn btn-sm btn-primary" id="view_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
-                 <div class="col-1 text-center"><button class="btn btn-sm btn-danger" id="delete_user"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
-                 <div class="col-1 text-center"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
-                </div>
-
-                </div>
-
+                <div class="d-flex justify-content-center">
+                 <div class="col-2 text-center"><button class="btn btn-sm btn-primary" id="view_user_ent"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
+                 <div class="col-2 text-center"><button class="btn btn-sm btn-danger" id="delete_user"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
+                 <div class="col-2 text-center"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
+               
+                 </div>           
                   </td>
                  </center>  
                             <?php endwhile?>
@@ -115,6 +126,23 @@ $('#userLists').DataTable({});
         </div>
     </div>
    </div>
-</div> 
+</div>  
 
+<!-- SCRIPT HERE -->
+
+<script>
+
+    $(document).on('click','#view_user_ent',function(e){
+        e.preventDefault(); 
+        console.log('CLICK'); 
+        $('#addEntityModal').modal('show');
+    });
+</script> 
+
+<script>
+    $(document).on('click','#add_entity_btn',function(e){
+        e.preventDefault();
+        $('#addEntityModal').modal('show');
+    });
+</script>
 

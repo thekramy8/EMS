@@ -322,15 +322,16 @@ $('#clientList').DataTable({});
        <div class="card "style="width:100%;">
             <div class="card-header bg-transparent fw-bold"style="border-bottom:5px solid #C6A984;">
                 <div class="row">
-                    <div class="col-2 mt-1" style="width:100px;">
+                    <div class="col-2 mt-1 p-2" style="width:100px;">
                         CLIENT
 
                     </div>
-                    <div class="col">
+                    <div class="col-2 p-2">
                     <div class="dropdown">
-                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"style="font-size:14px;background:#ADA06D;">
-                        ADD
-                    </button>
+                    <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"style="font-size:14px;background:#ADA06D;">
+                        Add
+                    </button> 
+                   
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addIndividual">Individual</a></li>
                     <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModal">Legal Entity</a></li>
@@ -338,9 +339,10 @@ $('#clientList').DataTable({});
                     </ul>
                     </div>
                     </div>
+                    <div class="col  d-flex justify-content-end p-2 mr-3" style="margin-right:50px;"><button class="btn btn-sm btn-dark" style="background:#ADA06D">Entity List</button></div>
                 </div>
             </div>
-            <div class="card-body p-1 "> 
+            <div class="card-body p-1"> 
 
             <span class="text-center">
             <img src="./vendor/img/bullet-list.png" alt="Logo" width="30" height="30" >
@@ -437,13 +439,9 @@ $('#clientList').DataTable({});
     //let isAjaxExecuted = false;
     //EDIT USER INTO DATABASE
     $(document).on('click','#edit_userbtn',function(){ 
-      
-      var user_id = $(this).val();
- 
-
+     var user_id = $(this).val();
       $.ajax({
             type:"GET",url:"./ajaxscript/update.php?user_id="+user_id,
-
             success: function(response)
             {
                var result = jQuery.parseJSON(response); 
@@ -452,7 +450,6 @@ $('#clientList').DataTable({});
                     alertify.set('notifier', 'position', 'top-right');
                     alertify.set('notifier', 'delay', 1);
                     alertify.success(result.message);
-
                 }
                 else if(result.status == 200)
                 {
