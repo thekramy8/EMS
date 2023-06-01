@@ -220,12 +220,12 @@ $('#clientList').DataTable({});
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="submit" class="btn btn-warning">Save changes</button> -->
                  
-                </div>
+                <!-- </div>
       </div>
 
     </div>
   </div>
-</div> 
+</div>  -->
  
 
  <div class="modal fade" id="editindividual" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

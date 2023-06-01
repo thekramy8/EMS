@@ -13,4 +13,3 @@ function loadContent(page) {
     });
 } 
 
-// Timer interval in milliseconds (e.g., refresh every 5 seconds)

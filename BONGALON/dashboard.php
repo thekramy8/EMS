@@ -85,12 +85,7 @@ function timedRefresh(timeoutPeriod) {
 
     </script> 
  
-    <!-- <script>
-  function redirectToPage(pageUrl) {
-    window.location.href = pageUrl;
-  }
-</script> --> 
-
+   
 <script>
         function confirmLogout() {
            
