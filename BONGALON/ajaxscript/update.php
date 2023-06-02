@@ -104,6 +104,50 @@ if (isset($_GET['user_id'])) {
 
 
 
+   if($_POST['update_account']){
+       
+        $user_id = $_POST['edit_entity_id'];
+        $fullname =$_POST['edit_entity_fullname'];   
+        $email =$_POST['edit_entity_email']; 
+        $role = $_POST['edit_entity_role'];
+
+
+        $validEmails = true;
+        if (!filter_var($email,FILTER_VALIDATE_EMAIL)) {
+            $response = [
+                'status' => 423,
+                'message' => 'Email not valid.'
+            ];
+            echo json_encode($response);
+            return false;
+            $validEmails =false;
+        }  
+
+        $editAccount = $conn->prepare("UPDATE tbl_user_list SET user_fullname =? , user_email=? , user_role=? WHERE id=?"); 
+        $editAccount->bind_param("sssi",$fullname,$email,$role,$user_id);
+        $result = $editAccount->execute();
+
+       
+            if ($result) {
+                $res = [
+                    'status' => 200,
+                    'message' => 'Update successfully.'
+                ];
+            } else {
+                $res = [
+                    'status' => 500,
+                    'message' => 'Not updated successfully.'
+                ];
+            }
+        
+            echo json_encode($res);
+            return false;
+        
+
+
+    }
+
+
 
 
 ?>

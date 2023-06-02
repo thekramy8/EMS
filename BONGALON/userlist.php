@@ -76,7 +76,7 @@ $('#userList').DataTable({});
 
 <!-- VIEW USER IN MODAL --> 
 
-<div class="modal fade" id="view_user_entity_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="view_userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
@@ -85,23 +85,21 @@ $('#userList').DataTable({});
       </div>
       <div class="modal-body">
         <p id="view_entity_modal"></p>
-
-        
-        <label for="edit_entity_lastname"class="form-label">LastName:</label>
-                <input type="text" id="add_entity_lastname" name="add_entity_lastname" class="form-control" required>
+        <!-- <label for="view_entity_lastname"class="form-label">LastName:</label>
+                <input type="text" id="view_entity_lastname" name="view_entity_lastname" class="form-control" required>
               
-                <label for="edit_entity_firstname"class="form-label">FirstName:</label>
-                <input type="text" id="add_entity_firstname" name="add_entity_firstname" class="form-control" required>
+                <label for="view_entity_firstname"class="form-label">FirstName:</label>
+                <input type="text" id="view_entity_firstname" name="view_entity_firstname" class="form-control" required>
 
-                <label for="edit_entity_firstname"class="form-label">User Role:</label>
+                <label for="view_entity_firstname"class="form-label">User Role:</label>
                 <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_role" id="add_entity_gender" name="add_entity_role">
                     <option value="Chief Lawyer">Chief Lawyer</option>
                     <option value="Associate Lawyer">Associate Lawyer</option>
                     <option value="Legal Secretary">Legal Secretary</option>
                </select> 
 
-               <label for="edit_entity_email" class="form-label">Email</label>
-               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email" aria-describedby="emailHelp" required>
+               <label for="view_entity_email" class="form-label">Email</label>
+               <input type="email"  class="form-control" id="view_entity_email" name="add_entity_email" aria-describedby="emailHelp" required> -->
                 
 
       </div>
@@ -115,48 +113,43 @@ $('#userList').DataTable({});
   
 <!-- //EDIT USER ACCOUNT -->
 
-    <div class="modal fade" id="editAccontModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h6 class="modal-title" id="exampleModalLabel">Edit User Account</h6>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form action="" id="update_user_entity">  
-          <input type="hidden" id="edit_entity_id" name="edit_entity_id" class="form-control" required>
-             
-          
-        <!-- <label for="edit_entity_firstname" class="form-label">Email address</label>
-        <input type="text" class="form-control"name="edit_entity_firstname" id="edit_entity_firstnamee" aria-describedby="emailHelp">
-   -->
-        <label for="edit_entity_fullname" class="form-label">Email address</label>
-        <input type="text" class="form-control"name="edit_entity_fullname" id="edit_entity_fullname" aria-describedby="emailHelp">
+<div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="exampleModalLabel">Edit User information</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="" id="update_user_entity_form">  
   
+      <input type="hidden" id="edit_entity_id" name="edit_entity_id" class="form-control">
 
-        <label for="edit_entity_email" class="form-label">Email address</label>
-        <input type="text" class="form-control"name="edit_entity_email" id="edit_entity_email" aria-describedby="emailHelp">
-          
+      <label for="edit_entity_fullname" class="form-label">Fullname:</label>
+       <input type="text" class="form-control"name="edit_entity_fullname" id="edit_entity_fullname">
 
-               <label for="edit_entity_role"class="form-label">User Role:</label>
-                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_role" id="add_entity_gender" name="add_entity_role">
+      <label for="edit_entity_email" class="form-label">Email address</label>
+       <input type="text" class="form-control"name="edit_entity_email" id="edit_entity_email" aria-describedby="emailHelp">
+
+       <label for="edit_entity_role"class="form-label">User Role:</label>
+                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="edit_entity_role"  id="edit_entity_role">
                     <option value="Chief Lawyer">Chief Lawyer</option>
                     <option value="Associate Lawyer">Associate Lawyer</option>
                     <option value="Legal Secretary">Legal Secretary</option>
                </select> 
-
+       
+       
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-warning">Save changes</button>
       </div>
-
-          </form>
-        </div>
-       </div>
+      </form>
+      </div>
+      
     </div>
   </div>
+</div>
 
 
 <!-- MODAL END HERE --> 
@@ -233,7 +226,6 @@ $('#userList').DataTable({});
 <!-- SCRIPT HERE -->
 
 
-<script src="./ajaxscript/js/controller_account.js"></script> 
 
  
 <script>
@@ -279,14 +271,64 @@ $('#userList').DataTable({});
               $("#edit_entity_role").val(result.data.user_role);  
               
 
-              $("#editAccontModal").modal("show");
+              $("#editAccountModal").modal("show");
             }
 
         }
     })
 
   });
+</script> 
+<script>
+
+// $(document).on('submit',"#update_user_entity_form",function(e){
+//     e.preventDefault();
+   
+//     var formData = new FormData(this);
+//     formData.append("update_account",true);
+//     $.ajax({ 
+//       type:"POST",url:"./ajaxscript/update.php",data:formData,
+//       processData:false,contentType:false,
+    
+//       success:function(response)
+//       {
+//           var result = jQuery.parseJSON(response); 
+//           if(result.status == 422)
+//           {
+//             alertify.set('notifier','positions','top-right');     
+//             alertify.success(result.message);
+//           }
+//           else if(result.status == 200)
+//           {
+           
+//             alertify.set('notifier','positions','top-right'); 
+//               alertify.success(result.message); 
+//               $('#userList').load(location.href+ " #userList");;
+//            $('#editAccountModal').modal('hide');
+//            $('#update_user_entity_form')[0].reset();
+
+             
+//               // $("#editindividual").modal("hide"); 
+//               // console.log(result.message);
+//           } 
+//           loadContent('userlist'); 
+//          // abortController.abort();
+//        $(document).off('submit', '#update_user_entity_form');
+//       } 
+
+
+//     });
+//   //  xhr.abort(); 
+// }); 
+
+ 
+
 </script>
+
+<script src="./src/js/routing.js"></script>
+<script src="./ajaxscript/js/controller_account.js"></script> 
+
+<script src="./ajaxscript/js/update.js"></script> 
 
 
 

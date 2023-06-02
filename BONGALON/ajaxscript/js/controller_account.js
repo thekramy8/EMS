@@ -112,6 +112,12 @@ $(document).on('click','#delete_user_entity',function(e){
                      alertify.success(result.message); 
                      loadContent('userlist');
                  }
+                 else if(result.status ==423)
+                 {
+                     alertify.set('notifier','positions','top-right'); 
+                     alertify.success(result.message); 
+                   
+                 }
              }
          });
      }

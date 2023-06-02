@@ -38,7 +38,47 @@ $(document).on('submit',"#updateClientForm",function(e){
   //  xhr.abort(); 
 }); 
 
+ 
+/// UPDATE USER ACCOUNT LIST   
 
-/// UPDATE CLIENT LIST
+$(document).on('submit',"#update_user_entity_form",function(e){
+  e.preventDefault();
+ 
+  var formData = new FormData(this);
+  formData.append("update_account",true);
+  $.ajax({ 
+    type:"POST",url:"./ajaxscript/update.php",data:formData,
+    processData:false,contentType:false,
+  
+    success:function(response)
+    {
+        var result = jQuery.parseJSON(response); 
+        if(result.status == 422)
+        {
+          alertify.set('notifier','positions','top-right'); 
+          alertify.success(result.message); 
+        }
+        else if(result.status == 200)
+        {
+       
+         $('#editAccountModal').modal('hide');
+         $('#update_user_entity_form')[0].reset();
+
+            alertify.set('notifier','positions','top-right'); 
+            alertify.success(result.message); 
+
+            $('#userList').load(location.href+ " #userList");;
+           
+          } 
+        loadContent('userlist'); 
+       // abortController.abort();
+     $(document).off('submit', '#update_user_entity_form');
+    } 
+
+
+  });
+//  xhr.abort(); 
+}); 
+
 
  
