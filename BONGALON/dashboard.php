@@ -23,7 +23,7 @@ $id = $_SESSION['id'];
     <title>BONGALON LAW FIRM</title>
 </head>
 <body>
-    
+
     <style>
     .name {
     color: #0D0D0D;
@@ -42,10 +42,10 @@ $id = $_SESSION['id'];
  
     <script src="./vendor/js/bootstrap.bundle.min.js" type="text/javascript"></script>
   
-  
+ 
      <script src="./vendor/sweetalert/sweetalert2@11.js" type="text/javascript"> </script>   
      <script src="./vendor/alertify/alertify.min.js" type="text/javascript"></script> 
-        
+     <script src="./src/js/routing.js"></script>
     <script> 
 
 

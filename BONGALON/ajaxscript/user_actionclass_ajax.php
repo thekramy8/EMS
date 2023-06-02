@@ -16,7 +16,7 @@
         $contactTWO = $_POST['contactTwo'];
         $addOne =$_POST['address_one'];
         $addTwo =$_POST['address_two'];
-    
+        
 
     if (empty($lastName) || empty($firstName) || empty($middleName) ||empty($emailone) || empty($contactONE) || empty($addOne)) {
         $response = [
@@ -26,6 +26,32 @@
         echo json_encode($response);
         return false;
     } 
+   
+    
+    $validEmails = true;
+    
+    if (!filter_var($emailone, FILTER_VALIDATE_EMAIL)) {
+        $response = [
+            'status' => 423,
+            'message' => 'Email not valid.'
+        ];
+        echo json_encode($response);
+        return false;
+        $validEmails =false;
+    }
+    
+    if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $response = [
+            'status' => 423,
+            'message' => 'Email not valid.'
+        ];
+        echo json_encode($response);
+        return false;
+        $validEmails =false;
+    }
+    
+   
+    
 
     $stmt = $conn->prepare("INSERT INTO tbl_client_list (firstname , middlename , lastname , gender , first_email, second_email, first_contact,
     second_contact, first_address, second_address) VALUES (?,?,?,?,?,?,?,?,?,?)");

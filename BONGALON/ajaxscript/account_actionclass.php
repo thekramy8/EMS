@@ -19,7 +19,23 @@
                 $response = ['status' => 404,'message'=>'Please Complete the Required Fields.'];
                 echo json_encode($response); 
                 return false;
-            }
+            } 
+
+              
+                $validEmails = true;
+                
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $response = [
+                        'status' => 423,
+                        'message' => 'Email not valid.'
+                    ];
+                    echo json_encode($response);
+                    return false;
+                    $validEmails =false;
+                }
+                
+              
+    
 
         $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
         //INSERTING USING QUERY 

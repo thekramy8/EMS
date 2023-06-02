@@ -31,6 +31,11 @@
                     $('#saveuserForm')[0].reset();
     
                     loadContent('client');
+                } else if(res.status == 423)
+                {
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.set('notifier', 'delay', 1);
+                    alertify.success(res.message);
                 }
             }
         });

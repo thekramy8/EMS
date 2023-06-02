@@ -1,8 +1,16 @@
 <?php  include './db_connection.php'; ?>
 
 <script> 
-$(document).ready(function() {
-  $('#userList').DataTable();
+$(document).ready(function()
+{ 
+ // Destroy the existing DataTable instance (if it exists)
+if ($.fn.DataTable.isDataTable('#clientList')) {
+    $('#userList').DataTable().destroy();
+}
+
+// Reinitialize the DataTable
+$('#userList').DataTable({});
+
 });
 </script>  
 
@@ -33,7 +41,7 @@ $(document).ready(function() {
                </select> 
 
                <label for="add_entity_email" class="form-label">Email</label>
-               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email"  aria-describedby="emailHelp" required>
+               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email" aria-describedby="emailHelp" required>
                 
                <!-- <label for="add_entity_password" class="form-label">Password</label>
                <input type="text" id="add_entity_password" name="add_entity_password" class="form-control"> -->
@@ -51,13 +59,15 @@ $(document).ready(function() {
                 
 
 
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="submit_entity" class="btn btn-warning">Save changes</button>
+        
+        </div>
         </form>
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="submit_entity" class="btn btn-warning">Save changes</button>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -161,15 +171,9 @@ $(document).ready(function() {
 <!-- SCRIPT HERE -->
 
 
-<script src="./ajaxscript/js/controller_account.js"></script>
-<script>
+<script src="./ajaxscript/js/controller_account.js"></script> 
 
-    $(document).on('click','#view_user_ent',function(e){
-        e.preventDefault(); 
-        
-      
-    });
-</script>  
+ 
 <script>
   $(document).ready(function() {
     $('.toggle-password').click(function() {

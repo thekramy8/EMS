@@ -21,10 +21,14 @@ $('#submit_entity').on('click',function(e){
                 alertify.set('notifier', 'position', 'top-right');
                 alertify.set('notifier', 'delay', 1); 
                 alertify.success(result.message);
-            }else if(result.status == 400)
+                }else if(result.status == 423){
+                
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.set('notifier', 'delay', 1); 
+                alertify.success(result.message)
+            }
+            else if(result.status == 400)
             {
-             
-
                 alertify.set('notifier', 'position', 'top-right');
                 alertify.set('notifier', 'delay', 1); 
                 alertify.success(result.message);
@@ -33,9 +37,9 @@ $('#submit_entity').on('click',function(e){
                 $('#add_entity_form')[0].reset();
               
                 loadContent('userlist');
-                $('#userList').DataTable().ajax.reload();
+                //$('#userList').DataTable().ajax.reload();
             }
-         $(document).off('submit', '#add_entity_form'); 
+       //  $(document).off('submit', '#add_entity_form'); 
         }
     })
 }); 
