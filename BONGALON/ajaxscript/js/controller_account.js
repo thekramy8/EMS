@@ -97,7 +97,7 @@ $(document).on('click','#delete_user_entity',function(e){
          $.ajax({
              type:"POST", 
              url:"./ajaxscript/account_actionclass.php",
-             data:{'delete_user':true,'entity_id':entity_id},
+             data:{'view_user':true,'entity_id':entity_id},
 
              success: function(response)
              {
@@ -105,7 +105,7 @@ $(document).on('click','#delete_user_entity',function(e){
                  if(result.status == 500)
                  {
                      Swal.fire(result.message);
-                     
+
                  }else if(result.status ==200)
                  {
                      alertify.set('notifier','positions','top-right'); 

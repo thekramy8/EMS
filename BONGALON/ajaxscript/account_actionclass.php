@@ -121,7 +121,43 @@ if(isset($_POST['delete_user']))
     return false;
     
 
-}
+} 
+
+
+if(isset($_GET['view_entity_user'])) 
+{ 
+    $userId = mysqli_real_escape_string($conn,$_GET['view_entity_user']); 
+
+    $selectID = "SELECT * FROM tbl_user_list WHERE id='$userId' "; 
+    $execute_query = mysqli_query($conn,$selectID); 
+
+    //CHECK RETURNING VALUE 
+    
+        if(mysqli_num_rows($execute_query)== 1) 
+        {   
+
+            $user_record = mysqli_fetch_array($execute_query); 
+
+
+            $result=[    
+                'status' =>  200,
+                'message' => 'Record Found.',
+                'data' => $user_record
+                    ];
+                echo json_encode($result) ;
+                return false;
+        }
+        else 
+        { 
+            $result=[    
+                'status' =>  404,
+                'message' => 'No record found.',
+                    ];
+                echo json_encode($result) ;
+                return false;
+        }
+}   
+
 
 
 

@@ -29,6 +29,7 @@ $('#userList').DataTable({});
       <div class="modal-body">
 
         <form action=""id="add_entity_form">
+
                 <label for="add_entity_lastname"class="form-label">LastName:</label>
                 <input type="text" id="add_entity_lastname" name="add_entity_lastname" class="form-control" required>
               
@@ -45,9 +46,7 @@ $('#userList').DataTable({});
                <label for="add_entity_email" class="form-label">Email</label>
                <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email" aria-describedby="emailHelp" required>
                 
-               <!-- <label for="add_entity_password" class="form-label">Password</label>
-               <input type="text" id="add_entity_password" name="add_entity_password" class="form-control"> -->
-
+            
 
                <label for="password">Password</label>
               <div class="input-group">
@@ -77,7 +76,7 @@ $('#userList').DataTable({});
 
 <!-- VIEW USER IN MODAL --> 
 
-<div class="modal fade" id="view_userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="view_user_entity_Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog ">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,7 +85,25 @@ $('#userList').DataTable({});
       </div>
       <div class="modal-body">
         <p id="view_entity_modal"></p>
-       
+
+        
+        <label for="edit_entity_lastname"class="form-label">LastName:</label>
+                <input type="text" id="add_entity_lastname" name="add_entity_lastname" class="form-control" required>
+              
+                <label for="edit_entity_firstname"class="form-label">FirstName:</label>
+                <input type="text" id="add_entity_firstname" name="add_entity_firstname" class="form-control" required>
+
+                <label for="edit_entity_firstname"class="form-label">User Role:</label>
+                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_role" id="add_entity_gender" name="add_entity_role">
+                    <option value="Chief Lawyer">Chief Lawyer</option>
+                    <option value="Associate Lawyer">Associate Lawyer</option>
+                    <option value="Legal Secretary">Legal Secretary</option>
+               </select> 
+
+               <label for="edit_entity_email" class="form-label">Email</label>
+               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email" aria-describedby="emailHelp" required>
+                
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -96,19 +113,38 @@ $('#userList').DataTable({});
   </div>
 </div>
   
-
+<!-- //EDIT USER ACCOUNT -->
 
     <div class="modal fade" id="editAccontModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h6 class="modal-title" id="exampleModalLabel">Edit User Account</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
-          <form action="">
+          <form action="" id="update_user_entity">  
+          <input type="hidden" id="edit_entity_id" name="edit_entity_id" class="form-control" required>
+             
           
+        <!-- <label for="edit_entity_firstname" class="form-label">Email address</label>
+        <input type="text" class="form-control"name="edit_entity_firstname" id="edit_entity_firstnamee" aria-describedby="emailHelp">
+   -->
+        <label for="edit_entity_fullname" class="form-label">Email address</label>
+        <input type="text" class="form-control"name="edit_entity_fullname" id="edit_entity_fullname" aria-describedby="emailHelp">
+  
+
+        <label for="edit_entity_email" class="form-label">Email address</label>
+        <input type="text" class="form-control"name="edit_entity_email" id="edit_entity_email" aria-describedby="emailHelp">
+          
+
+               <label for="edit_entity_role"class="form-label">User Role:</label>
+                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_role" id="add_entity_gender" name="add_entity_role">
+                    <option value="Chief Lawyer">Chief Lawyer</option>
+                    <option value="Associate Lawyer">Associate Lawyer</option>
+                    <option value="Legal Secretary">Legal Secretary</option>
+               </select> 
 
 
       <div class="modal-footer">
@@ -214,6 +250,41 @@ $('#userList').DataTable({});
         $(this).find('i').removeClass('fa-eye-slash').addClass('fa-eye');
       }
     });
+  });
+</script> 
+
+<script>
+
+  $(document).on('click','#edit_user_entity',function(e){
+    e.preventDefault();
+    var entity_user_id = $(this).val(); 
+    //console.log(user);  
+    
+    $.ajax({
+        type:"GET",url:"./ajaxscript/account_actionclass.php?view_entity_user="+entity_user_id,
+        success:function(response)
+        {
+          var result = jQuery.parseJSON(response);
+          if(result.status == 500)
+            {
+              alertify.set('notifier', 'position', 'top-right');
+              alertify.set('notifier', 'delay', 1);
+              alertify.success(result.message);
+            }else if(result.status == 200)
+            { 
+              $("#edit_entity_id").val(result.data.id);    
+              
+              $("#edit_entity_fullname").val(result.data.user_fullname); 
+              $("#edit_entity_email").val(result.data.user_email);  
+              $("#edit_entity_role").val(result.data.user_role);  
+              
+
+              $("#editAccontModal").modal("show");
+            }
+
+        }
+    })
+
   });
 </script>
 

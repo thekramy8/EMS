@@ -433,9 +433,7 @@ $('#clientList').DataTable({});
 
 
 <script>
-    // const xhr = new XMLHttpRequest();
-    //const abortController = new AbortController(); 
-    //let isAjaxExecuted = false;
+   
     //EDIT USER INTO DATABASE
     $(document).on('click','#edit_userbtn',function(){ 
      var user_id = $(this).val();
@@ -450,6 +448,7 @@ $('#clientList').DataTable({});
                     alertify.set('notifier', 'delay', 1);
                     alertify.success(result.message);
                 }
+                
                 else if(result.status == 200)
                 {
                     $("#user_id").val(result.data.id);  
