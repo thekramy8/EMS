@@ -125,7 +125,7 @@ $('#userList').DataTable({});
                         <th class="text-center">Name</th>
                         <th class="text-center">Email</th>
                         <th class="text-center">Role</th>
-                        <!-- <th class="text-center">Access Level</th> -->
+                        <th class="text-center">Access Level</th>
                         <th class="text-center">Action</th>
                     </tr>
                  </thead>        
@@ -142,14 +142,14 @@ $('#userList').DataTable({});
                                 <td class="text-center"><?php echo $row['user_fullname'];?></td>
                                 <td class="text-center"><?php echo $row['user_email'];?></td>
                                 <td class="text-center"><?php echo $row['user_role'];?></td>
-
+                                <td class="text-center"><?php echo $row['user_access'];?></td>
 
                                 <center>
                                     <td>
-                                         <div class="d-flex justify-content-center">
-                                        <div class="col-2"><button class="btn btn-sm btn-primary" id="view_user_entity"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
-                                        <div class="col-2"><button class="btn btn-sm btn-danger" id="delete_user"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
-                                        <div class="col-2"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/pen.png"alt=""></button></div>  
+                                         <div class="d-flex justify-content-start">
+                                        <div class="col"><button class="btn btn-sm btn-primary" id="view_user_account"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
+                                        <div class="col"><button class="btn btn-sm btn-danger" id="delete_user_account"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
+                                        <div class="col"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/pen.png"alt=""></button></div>  
                                         </div> 
                                     </td>
 

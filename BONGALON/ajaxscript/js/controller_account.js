@@ -46,7 +46,7 @@ $('#submit_entity').on('click',function(e){
 
 //VIEW DATA IN MODAL 
 
-$(document).on('click','#view_user_entity',function(e){
+$(document).on('click','#view_user_account',function(e){
    
     var view_entity_user = $(this).val();
    // console.log(user_id);

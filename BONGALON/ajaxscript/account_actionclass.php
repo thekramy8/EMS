@@ -34,14 +34,20 @@
                     $validEmails =false;
                 }
                 
-              
+        if($role == 'Chief Lawyer')  
+        { 
+            $accesslevel =  "Create Read Update Delete ";
+        }else if($role == 'Associate Lawyer')
+        {
+            $accesslevel =  "Create Read Update";
+        }     
     
 
         $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
         //INSERTING USING QUERY 
-        $insertClient = $conn->prepare("INSERT INTO tbl_user_list(user_fullname,user_email,user_password,user_role) 
-        VALUES(?,?,?,?)");
-        $insertClient->bind_param("ssss",$fullname,$email, $hashedPassword,$role);
+        $insertClient = $conn->prepare("INSERT INTO tbl_user_list(user_fullname,user_email,user_password,user_role,user_access) 
+        VALUES(?,?,?,?,?)");
+        $insertClient->bind_param("sssss",$fullname,$email, $hashedPassword,$role,$accesslevel);
     
         if($insertClient->execute())
         {
