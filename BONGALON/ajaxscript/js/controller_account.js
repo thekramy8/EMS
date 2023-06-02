@@ -46,7 +46,7 @@ $('#submit_entity').on('click',function(e){
 
 //VIEW DATA IN MODAL 
 
-$(document).on('click','#view_user_account',function(e){
+$(document).on('click','#view_user_entity',function(e){
    
     var view_entity_user = $(this).val();
    // console.log(user_id);
@@ -66,6 +66,7 @@ $(document).on('click','#view_user_account',function(e){
                 "</span><br>"
                 +"Email: <span class='name'>" + result.data.user_email +"</span><br>"
                 +"Role: <span class='name'>" + result.data.user_role+"</span><br>"
+                +"Access Level: <span class='name'>" + result.data.user_access+"</span><br>"
                 ) 
 
                 $('#view_userModal').modal('show');
@@ -74,5 +75,47 @@ $(document).on('click','#view_user_account',function(e){
 
     });
 
-}); 
+});  
+
+
+$(document).on('click','#delete_user_entity',function(e){
+    e.preventDefault();
+    var entity_id = $(this).val();
+
+    Swal.fire({
+     title: 'Are you sure to delete this user?',
+     icon: 'warning', 
+     width:'500px' ,  
+     showCancelButton: true,
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Yes, delete it!'
+   
+   
+  }).then((result) => {
+     if (result['isConfirmed']){
+
+         $.ajax({
+             type:"POST", 
+             url:"./ajaxscript/account_actionclass.php",
+             data:{'delete_user':true,'entity_id':entity_id},
+
+             success: function(response)
+             {
+                 var result = jQuery.parseJSON(response); 
+                 if(result.status == 500)
+                 {
+                     Swal.fire(result.message);
+                     
+                 }else if(result.status ==200)
+                 {
+                     alertify.set('notifier','positions','top-right'); 
+                     alertify.success(result.message); 
+                     loadContent('userlist');
+                 }
+             }
+         });
+     }
+});
+
+});
 

@@ -24,17 +24,10 @@ $(document).on('submit',"#updateClientForm",function(e){
 
               alertify.set('notifier','positions','top-right'); 
               alertify.success(result.message); 
-          
-         
-                  
-             
               $('#clientList').load(location.href+ " #clientList");;
               $("#editindividual").modal("hide"); 
               console.log(result.message);
           } 
-          
-
-        
           loadContent('client'); 
          // abortController.abort();
        $(document).off('submit', '#updateClientForm');
@@ -43,4 +36,9 @@ $(document).on('submit',"#updateClientForm",function(e){
 
     });
   //  xhr.abort(); 
-});
+}); 
+
+
+/// UPDATE CLIENT LIST
+
+ 

@@ -310,6 +310,8 @@ $('#clientList').DataTable({});
     </div>
   </div>
 </div> 
+ 
+  
 
 <div class="row " >
   <div class="col">
@@ -337,7 +339,9 @@ $('#clientList').DataTable({});
                 
                   </div>
             </div>
-            <div class="card-body p-1"> 
+            <div class="card-body p-1">  
+        
+
 
             <span class="text-center">
             <img src="./vendor/img/bullet-list.png" alt="Logo" width="30" height="30" >

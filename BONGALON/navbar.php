@@ -12,7 +12,8 @@
           // output data of each row
           while ($row = $result->fetch_assoc()) {
               $user_fullname = $row["user_fullname"]; 
-              $user_role = $row["user_role"];
+              $user_role = $row["user_role"]; 
+        
             
           }
       }

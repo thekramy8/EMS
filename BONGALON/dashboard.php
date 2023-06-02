@@ -1,6 +1,7 @@
 <?php
 
 include 'db_connection.php';
+
 if(!isset($_SESSION['id'])) header("location:index.php");
 $id = $_SESSION['id'];
 ?>  
@@ -41,8 +42,6 @@ $id = $_SESSION['id'];
   
  
     <script src="./vendor/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-  
- 
      <script src="./vendor/sweetalert/sweetalert2@11.js" type="text/javascript"> </script>   
      <script src="./vendor/alertify/alertify.min.js" type="text/javascript"></script> 
      <script src="./src/js/routing.js"></script>
@@ -107,9 +106,7 @@ function timedRefresh(timeoutPeriod) {
                 
                 if (result.isConfirmed) {
                  window.location.href = "logout.php?logout=true"; 
-                } else if (result.isDenied) {
-                    window.location.href = "./dashboard.php"; 
-                }
+                } 
                 }) 
             }
     </script> 

@@ -1,4 +1,6 @@
-<?php  include './db_connection.php'; ?>
+  <?php  include './db_connection.php';
+        $user_log = $_SESSION['id'];
+  ?>
 
 <script> 
 $(document).ready(function()
@@ -73,8 +75,6 @@ $('#userList').DataTable({});
 </div>
  
 
-
-
 <!-- VIEW USER IN MODAL --> 
 
 <div class="modal fade" id="view_userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -95,7 +95,32 @@ $('#userList').DataTable({});
     </div>
   </div>
 </div>
- 
+  
+
+
+    <div class="modal fade" id="editAccontModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form action="">
+          
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+
+          </form>
+        </div>
+       </div>
+    </div>
+  </div>
 
 
 <!-- MODAL END HERE --> 
@@ -131,8 +156,9 @@ $('#userList').DataTable({});
                  </thead>        
                            <tbody class="table-warning">
                       <?php
-                        require './db_connection.php';
-                        $user_list = "SELECT *  FROM tbl_user_list ORDER BY user_fullname ASC";
+                        require './db_connection.php'; 
+
+                        $user_list = "SELECT *  FROM tbl_user_list WHERE id <> '$user_log' ORDER BY user_fullname ASC";
                         $query = $conn->query($user_list);
                         $i = 1; 
                         while($row= $query->fetch_assoc()):
@@ -147,9 +173,9 @@ $('#userList').DataTable({});
                                 <center>
                                     <td>
                                          <div class="d-flex justify-content-start">
-                                        <div class="col"><button class="btn btn-sm btn-primary" id="view_user_account"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
-                                        <div class="col"><button class="btn btn-sm btn-danger" id="delete_user_account"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
-                                        <div class="col"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/pen.png"alt=""></button></div>  
+                                        <div class="col"><button class="btn btn-sm btn-primary" id="view_user_entity"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
+                                        <div class="col"><button class="btn btn-sm btn-danger" id="delete_user_entity"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
+                                        <div class="col"><button class="btn btn-sm btn-success" id="edit_user_entity"  value=<?php echo $row['id']?>'><img src="./src/img/pen.png"alt=""></button></div>  
                                         </div> 
                                     </td>
 
