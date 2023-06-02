@@ -129,7 +129,7 @@ $('#userLists').DataTable({});
 </div>  
 
 <!-- SCRIPT HERE -->
-<script src="./ajaxscript/js/controller_ajax.js"></script>
+<script src="./ajaxscript/js/controller_client.js"></script>
 <script>
 
     $(document).on('click','#view_user_ent',function(e){

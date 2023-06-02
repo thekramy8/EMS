@@ -106,7 +106,7 @@ $(document).on('click','#view_user',function(){
 
                 $('#viewUserModal').modal('show');  
                
-            }
+            } 
 
         }
 
