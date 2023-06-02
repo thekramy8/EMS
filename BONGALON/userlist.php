@@ -1,20 +1,11 @@
-<?php
-    include './db_connection.php';
-?> 
+<?php  include './db_connection.php'; ?>
 
 <script> 
-$(document).ready(function()
-{ 
- // Destroy the existing DataTable instance (if it exists)
-if ($.fn.DataTable.isDataTable('#userLists')) {
-    $('#usersLists').DataTable().destroy();
-}
-
-// Reinitialize the DataTable
-$('#userLists').DataTable({});
-
+$(document).ready(function() {
+  $('#userList').DataTable();
 });
-</script> 
+</script>  
+
 
 <!-- MODAL START HERE -->  
 
@@ -42,10 +33,23 @@ $('#userLists').DataTable({});
                </select> 
 
                <label for="add_entity_email" class="form-label">Email</label>
-               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email" required>
+               <input type="email"  class="form-control" id="add_entity_email" name="add_entity_email"  aria-describedby="emailHelp" required>
                 
-               <label for="add_entity_password" class="form-label">Password</label>
-               <input type="text" id="add_entity_password" name="add_entity_password" class="form-control">
+               <!-- <label for="add_entity_password" class="form-label">Password</label>
+               <input type="text" id="add_entity_password" name="add_entity_password" class="form-control"> -->
+
+
+               <label for="password">Password</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="add_entity_password" name="add_entity_password" required>
+                <div class="input-group-append">
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                    <i class="fa fa-eye"></i>
+                </button>
+                </div>
+                </div>
+                
+
 
         </form>
 
@@ -57,6 +61,31 @@ $('#userLists').DataTable({});
     </div>
   </div>
 </div>
+ 
+
+
+
+<!-- VIEW USER IN MODAL --> 
+
+<div class="modal fade" id="view_userModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title fs-5" id="staticBackdropLabel">View Client Information</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="view_entity_modal"></p>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+ 
 
 
 <!-- MODAL END HERE --> 
@@ -79,7 +108,7 @@ $('#userLists').DataTable({});
 
             <div class="row mt-3 m-3" style="overflow:auto;"> 
                 <div class="table-responsive  p-3">
-                <table id="userLists" class="table  table-hover "style="width:100%;font-size:12px;">
+                <table id="userList" class="table  table-hover "style="width:100%;font-size:12px;">
                   <thead> 
                     <tr>    
                         <th class="text-center">No.</th>
@@ -89,35 +118,36 @@ $('#userLists').DataTable({});
                         <!-- <th class="text-center">Access Level</th> -->
                         <th class="text-center">Action</th>
                     </tr>
-                     </thead>   
+                 </thead>        
+                           <tbody class="table-warning">
                       <?php
                         require './db_connection.php';
                         $user_list = "SELECT *  FROM tbl_user_list ORDER BY user_fullname ASC";
                         $query = $conn->query($user_list);
                         $i = 1; 
                         while($row= $query->fetch_assoc()):
-                        ?>
-
-                        <tbody class="table-warning">
+                     ?>
                             <tr>
-                                <td class="text-center"><b><?php echo $i++;?></b></td> 
-                                <td class="text-center"><?php echo $row['user_fullname']?></td>
-                                <td class="text-center"><?php echo $row['user_email']?></td>
-                                <td class="text-center"><?php echo $row['user_role']?></td>      
-                 <center>
-                  <td> 
-                 
+                                <td class="text-center"><b><?php echo $i++;?></b></td>
+                                <td class="text-center"><?php echo $row['user_fullname'];?></td>
+                                <td class="text-center"><?php echo $row['user_email'];?></td>
+                                <td class="text-center"><?php echo $row['user_role'];?></td>
 
-                <div class="d-flex justify-content-center">
-                 <div class="col-2 text-center"><button class="btn btn-sm btn-primary" id="view_user_ent"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
-                 <div class="col-2 text-center"><button class="btn btn-sm btn-danger" id="delete_user"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
-                 <div class="col-2 text-center"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
-               
-                 </div>           
-                  </td>
-                 </center>  
-                            <?php endwhile?>
-                            </tr>                     
+
+                                <center>
+                                    <td>
+                                         <div class="d-flex justify-content-center">
+                                        <div class="col-2"><button class="btn btn-sm btn-primary" id="view_user_entity"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div> 
+                                        <div class="col-2"><button class="btn btn-sm btn-danger" id="delete_user"  value=<?php echo $row['id']?>'><img src="./src/img/trash-can.png"alt=""></button></div> 
+                                        <div class="col-2"><button class="btn btn-sm btn-success" id="edit_user"  value=<?php echo $row['id']?>'><img src="./src/img/pen.png"alt=""></button></div>  
+                                        </div> 
+                                    </td>
+
+                                </center>
+
+                            </tr>  
+                            
+                 <?php endwhile; ?>                   
                         </tbody>     
                   </table>  
 
@@ -129,7 +159,9 @@ $('#userLists').DataTable({});
 </div>  
 
 <!-- SCRIPT HERE -->
-<script src="./ajaxscript/js/controller_client.js"></script>
+
+
+<script src="./ajaxscript/js/controller_account.js"></script>
 <script>
 
     $(document).on('click','#view_user_ent',function(e){
@@ -137,7 +169,27 @@ $('#userLists').DataTable({});
         
       
     });
-</script> 
+</script>  
+<script>
+  $(document).ready(function() {
+    $('.toggle-password').click(function() {
+      var passwordInput = $(this).closest('.input-group').find('input');
+      var passwordFieldType = passwordInput.attr('type');
+      
+      if (passwordFieldType === 'password') {
+        passwordInput.attr('type', 'text');
+        $(this).find('i').removeClass('fa-eye').addClass('fa-eye-slash');
+      } else {
+        passwordInput.attr('type', 'password');
+        $(this).find('i').removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
+  });
+</script>
+
+
+
+
 
 
 

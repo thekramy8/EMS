@@ -11,7 +11,7 @@
         $role = $_POST['add_entity_role'];
         $password = $_POST['add_entity_password'];
 
-        $fullname = $firstname."". $lastname;
+        $fullname = $firstname."  ". $lastname;
 
             //VALIDATING THE FIELDS
             if(empty($lastname) || empty($firstname) || empty($email) || empty($role) || empty($password))
@@ -39,4 +39,39 @@
 
 
     }
+
+    if(isset($_GET['view_entity'])) 
+{ 
+    $userId = mysqli_real_escape_string($conn,$_GET['view_entity']); 
+
+    $selectID = "SELECT * FROM tbl_user_list WHERE id='$userId' "; 
+    $execute_query = mysqli_query($conn,$selectID); 
+
+    //CHECK RETURNING VALUE 
+    
+        if(mysqli_num_rows($execute_query)== 1) 
+        {   
+
+            $user_record = mysqli_fetch_array($execute_query); 
+
+
+            $result=[    
+                'status' =>  200,
+                'message' => 'Record Found.',
+                'data' => $user_record
+                    ];
+                echo json_encode($result) ;
+                return false;
+        }
+        else 
+        { 
+            $result=[    
+                'status' =>  404,
+                'message' => 'No record found.',
+                    ];
+                echo json_encode($result) ;
+                return false;
+        }
+}   
+
 ?>

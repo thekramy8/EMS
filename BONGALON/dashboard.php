@@ -23,6 +23,15 @@ $id = $_SESSION['id'];
     <title>BONGALON LAW FIRM</title>
 </head>
 <body>
+    
+    <style>
+    .name {
+    color: #0D0D0D;
+    font-size: 16px;
+    font-weight:500;
+    }
+
+</style>
 
    <?php include 'navbar.php';  ?>
    

@@ -2,14 +2,7 @@
 
 <!--MODAL START HERE-->
 
-<style>
-  .name {
-  color: #0D0D0D;
-  font-size: 16px;
-  font-weight:500;
-}
 
-</style>
 <script> 
 $(document).ready(function()
 { 
@@ -322,11 +315,11 @@ $('#clientList').DataTable({});
        <div class="card "style="width:100%;">
             <div class="card-header bg-transparent fw-bold"style="border-bottom:5px solid #C6A984;">
                 <div class="row">
-                    <div class="col-2 mt-1 p-2" style="width:100px;">
+                    <div class="col-1 mt-1">
                         CLIENT
 
                     </div>
-                    <div class="col-2 p-2">
+                    <div class="col-1  d-flex justify-content-start"
                     <div class="dropdown">
                     <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"style="font-size:14px;background:#ADA06D;">
                         Add
@@ -338,9 +331,10 @@ $('#clientList').DataTable({});
                         
                     </ul>
                     </div>
-                    </div>
-                    <div class="col  d-flex justify-content-end p-2 mr-3" style="margin-right:50px;"><button class="btn btn-sm btn-dark" style="background:#ADA06D">Entity List</button></div>
-                </div>
+                  
+                    <div class="col d-flex justify-content-end" style="margin-right:50px;"><button class="btn btn-sm btn-dark" style="background:#ADA06D">Entity List</button></div>
+                
+                  </div>
             </div>
             <div class="card-body p-1"> 
 

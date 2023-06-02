@@ -91,7 +91,7 @@ $(document).on('click','#view_user',function(){
             if(result.status == 404)
             {
                 Swal.Fire(result.message);
-                console.log(user_id+"sample");
+           
             }else if(result.status == 200){ 
                 // $('#viewlastname').text("Name: "+  result.data.firstname+ " "+ result.data.middlename+ " "+  result.data.lastname);
                 $('#viewlastname').html("Name: <span class='name'>" + result.data.firstname + " "+ result.data.middlename+" "+ result.data.lastname+
