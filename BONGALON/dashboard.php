@@ -14,8 +14,8 @@ $id = $_SESSION['id'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <script src="./vendor/js/jquery-3.6.1.js" type="text/javascript"> </script>   
     <link rel="stylesheet" href="./vendor/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" /> -->
+    <link rel="stylesheet" href="./src/fontawesome/fontawesomeall.min.css.css">
     <link rel="stylesheet" href="./src/style.css">
    <link rel="stylesheet" href="./vendor/alertify/alertify.min.css">
    <link rel="stylesheet" href="./vendor/datatable/jquery.dataTables.min.css">
@@ -44,7 +44,8 @@ $id = $_SESSION['id'];
     <script src="./vendor/js/bootstrap.bundle.min.js" type="text/javascript"></script>
      <script src="./vendor/sweetalert/sweetalert2@11.js" type="text/javascript"> </script>   
      <script src="./vendor/alertify/alertify.min.js" type="text/javascript"></script> 
-     <script src="./src/js/routing.js"></script>
+     <script src="./src/js/routing.js"></script> 
+     <script src="./src/fontawesome/fontawesomeall.min.js" type="text/javascript">></script>
     <script> 
 
 

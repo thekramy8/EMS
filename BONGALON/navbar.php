@@ -36,7 +36,19 @@
           <a class="nav-link " aria-current="page" href="dashboard" data-page="home" style="color:#ADA06D;">DASHBOARD</a>
         </li>
         <li class="nav-item" >
-          <a class="nav-link active" aria-current="page" href="client" data-page="client" style="color:#ADA06D;">CLIENTS</a>
+          <div class="dropdown">
+          <a class="nav-link active btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">CLIENTS</a>
+
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li><a class="dropdown-item"  href="client" data-page="client">Individual Client List</a></li>
+            <li><a class="dropdown-item" href="entitylist" data-page="entitylist">Legal Entity List</a></li>
+         
+          </li>
+        </ul>
+        
+        </div>
+        
         </li>
        
         <li class="nav-item " >
@@ -46,6 +58,7 @@
         <li class="nav-item " >
           <a class="nav-link " aria-current="page" href="userlist" data-page="userlist"  style="color:#ADA06D;">USERS</a>
         </li>
+        
 
         <!-- <li class="nav-item" >
           <a class="nav-link active" aria-current="page" href="userlist" data-page="userlist" style="color:#ADA06D;">CLIENTS</a>

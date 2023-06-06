@@ -320,38 +320,33 @@ $('#clientList').DataTable({});
                 <div class="row">
                     <div class="col-1 mt-1">
                         CLIENT
-
                     </div>
-                    <div class="col-1  d-flex justify-content-start"
+
+                    <div class="col d-flex justify-content-start">
                     <div class="dropdown">
                     <button class="btn btn-dark btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"style="font-size:14px;background:#ADA06D;">
-                        Add
+                      ADD
                     </button> 
-                   
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addIndividual">Individual</a></li>
-                    <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModal">Legal Entity</a></li>
+                    <!-- <li><a class="dropdown-item"  data-toggle="modal" data-target="#exampleModal">Legal Entity</a></li> -->
                         
                     </ul>
                     </div>
+                    </div>
                   
-                    <div class="col d-flex justify-content-end" style="margin-right:50px;"><button class="btn btn-sm btn-dark" style="background:#ADA06D">Entity List</button></div>
-                
+                   
                   </div>
             </div>
-            <div class="card-body p-1">  
-        
 
-
+            <div class="card-body p-1">    
             <span class="text-center">
             <img src="./vendor/img/bullet-list.png" alt="Logo" width="30" height="30" >
               INDIVIDUAL CLIENT LIST
             </span>
-
             <div class="row mt-2 m-4">
                 <div class="table-responsive " style="overflow:auto;">
-
-                <table id="clientList" class="table table-hover "style="width:100%;font-size:11px; ">
+                <table id="clientList" class="table table-hover  "style="width:100%;font-size:13px; ">
         <thead >
             <tr > 
                 <th class="text-center" >NO.</th>
@@ -399,13 +394,9 @@ $('#clientList').DataTable({});
                  <td  class="text-center" ><?php echo $row['first_address'] ?></td> 
                  <td  class="text-center" ><?php echo $row['second_address'] ?></td>                   
                    
-                 <center>
+               
                   <td> 
-                    <style>
-                      .btn-font{
-                        font-size:5px;
-                      }
-                    </style>
+                   
                     <div class="d-flex justify-content-end ">
              
                     <div class="col"><button class="btn btn-sm btn-primary" id="view_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div>   
@@ -414,7 +405,7 @@ $('#clientList').DataTable({});
                     <div class="col"><button class="btn btn-sm btn-success"id="edit_userbtn"  value="<?php echo $row['id']?>"><img src="./src/img/pen.png" alt=""></button></div>
                     </div>
                   </td>
-                 </center>
+               
                  <?php endwhile; ?>
                  </tr>
         </tbody>

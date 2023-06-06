@@ -97,7 +97,7 @@ $(document).on('click','#delete_user_entity',function(e){
          $.ajax({
              type:"POST", 
              url:"./ajaxscript/account_actionclass.php",
-             data:{'view_user':true,'entity_id':entity_id},
+             data:{'delete_user':true,'user_id':entity_id},
 
              success: function(response)
              {
@@ -107,13 +107,13 @@ $(document).on('click','#delete_user_entity',function(e){
                      Swal.fire(result.message);
 
                  }else if(result.status ==200)
-                 {
+                 {   alertify.set('notifier', 'delay', 1);
                      alertify.set('notifier','positions','top-right'); 
                      alertify.success(result.message); 
                      loadContent('userlist');
                  }
                  else if(result.status ==423)
-                 {
+                 {   alertify.set('notifier', 'delay', 1);
                      alertify.set('notifier','positions','top-right'); 
                      alertify.success(result.message); 
                    

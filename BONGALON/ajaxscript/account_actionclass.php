@@ -99,7 +99,7 @@
 
 if(isset($_POST['delete_user']))
 { 
-    $user_id = $_POST['entity_id']; 
+    $user_id = $_POST['user_id']; 
     $query_delete = "DELETE FROM  tbl_user_list WHERE id=?"; 
     $stmt = $conn->prepare($query_delete); 
     $stmt->bind_param('i',$user_id); 
@@ -121,7 +121,7 @@ if(isset($_POST['delete_user']))
     return false;
     
 
-} 
+}
 
 
 if(isset($_GET['view_entity_user'])) 
