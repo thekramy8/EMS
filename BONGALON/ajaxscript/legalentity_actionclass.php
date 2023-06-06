@@ -1,5 +1,5 @@
 <?php   
-include '../db_connection.php';
+    include '../db_connection.php';
 
     if(isset($_POST['save_legal_information']))
     {
@@ -69,9 +69,102 @@ include '../db_connection.php';
         echo json_encode($response);
         return false;
 
-
-
-        
-
     }
+
+    if(isset($_POST['delete_user']))
+    { 
+        $user_id = $_POST['legal_user_id']; 
+        $query_delete = "DELETE FROM  tbl_entity_list WHERE id=?"; 
+        $stmt = $conn->prepare($query_delete); 
+        $stmt->bind_param('i',$user_id); 
+        $query_delete = $stmt->execute(); 
+        $stmt->close(); 
+    
+        if ($query_delete) {
+            $res = [
+                'status' => 200,
+                'message' => 'Deleted successfully.'
+            ];
+        } else {
+            $res = [
+                'status' => 500,
+                'message' => 'Not Deleted.'
+            ];
+        }
+        echo json_encode($res);
+        return false;
+        
+    
+    }  
+
+
+    if(isset($_GET['view_legal_entity']))  { 
+        $userId = mysqli_real_escape_string($conn,$_GET['view_legal_entity']); 
+    
+        $selectID = "SELECT * FROM tbl_entity_list WHERE id='$userId' "; 
+        $execute_query = mysqli_query($conn,$selectID); 
+    
+        //CHECK RETURNING VALUE 
+        
+            if(mysqli_num_rows($execute_query)== 1) 
+            {   
+    
+                $user_record = mysqli_fetch_array($execute_query); 
+    
+    
+                $result=[    
+                    'status' =>  200,
+                    'message' => 'Record Found.',
+                    'data' => $user_record
+                        ];
+                    echo json_encode($result) ;
+                    return false;
+            }
+            else 
+            { 
+                $result=[    
+                    'status' =>  404,
+                    'message' => 'No record found.',
+                        ];
+                    echo json_encode($result) ;
+                    return false;
+            }
+    }   
+    
+
+
+    if(isset($_GET['legal_user_id'])) 
+{ 
+    $userId = mysqli_real_escape_string($conn,$_GET['legal_user_id']); 
+
+    $selectID = "SELECT * FROM tbl_entity_list WHERE id='$userId' "; 
+    $execute_query = mysqli_query($conn,$selectID); 
+
+    //CHECK RETURNING VALUE 
+    
+        if(mysqli_num_rows($execute_query)== 1) 
+        {   
+
+            $user_record = mysqli_fetch_array($execute_query); 
+
+
+            $result=[    
+                'status' =>  200,
+                'message' => 'Record Found.',
+                'data' => $user_record
+                    ];
+                echo json_encode($result) ;
+                return false;
+        }
+        else 
+        { 
+            $result=[    
+                'status' =>  404,
+                'message' => 'No record found.',
+                    ];
+                echo json_encode($result) ;
+                return false;
+        }
+}  
+
 ?>

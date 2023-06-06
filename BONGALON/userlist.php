@@ -85,22 +85,7 @@ $('#userList').DataTable({});
       </div>
       <div class="modal-body">
         <p id="view_entity_modal"></p>
-        <!-- <label for="view_entity_lastname"class="form-label">LastName:</label>
-                <input type="text" id="view_entity_lastname" name="view_entity_lastname" class="form-control" required>
-              
-                <label for="view_entity_firstname"class="form-label">FirstName:</label>
-                <input type="text" id="view_entity_firstname" name="view_entity_firstname" class="form-control" required>
-
-                <label for="view_entity_firstname"class="form-label">User Role:</label>
-                <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="add_entity_role" id="add_entity_gender" name="add_entity_role">
-                    <option value="Chief Lawyer">Chief Lawyer</option>
-                    <option value="Associate Lawyer">Associate Lawyer</option>
-                    <option value="Legal Secretary">Legal Secretary</option>
-               </select> 
-
-               <label for="view_entity_email" class="form-label">Email</label>
-               <input type="email"  class="form-control" id="view_entity_email" name="add_entity_email" aria-describedby="emailHelp" required> -->
-                
+                 
 
       </div>
       <div class="modal-footer">
@@ -245,6 +230,7 @@ $('#userList').DataTable({});
   });
 </script> 
 
+
 <script>
 
   $(document).on('click','#edit_user_entity',function(e){
@@ -257,7 +243,7 @@ $('#userList').DataTable({});
         success:function(response)
         {
           var result = jQuery.parseJSON(response);
-          if(result.status == 500)
+          if(result.status == 404)
             {
               alertify.set('notifier', 'position', 'top-right');
               alertify.set('notifier', 'delay', 1);

@@ -226,7 +226,7 @@ $('#clientList').DataTable({});
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title" id="exampleModalLabel">Add Individual </h6>
+        <h6 class="modal-title" id="exampleModalLabel">Edit Information </h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

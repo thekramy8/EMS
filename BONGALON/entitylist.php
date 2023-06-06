@@ -13,7 +13,7 @@ $('#entityList').DataTable({});
 </script> 
 
 <!-- MODAL START HERE-->
-<div class="modal fade" id="addEntityUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addEntityUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,6 +79,103 @@ $('#entityList').DataTable({});
     </div>
   </div>
 </div>
+
+<!-- VIEW INFORMATION LEGAL ENTITY -->
+
+<div class="modal fade" id="viewEntityUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title " id="exampleModalLabel">View Information </h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <p id="view_entity_information"></p>
+     
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+       
+      </div>
+     
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- EDIT LEGAL ENTITY --> 
+
+
+<div class="modal fade" id="editentityUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title ">Edit Legal Entity </h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            
+      <form action="" id="save_entity_Form">
+        <div class="row"> 
+
+                <input type="hidden" id="legal_user_id_edit"name="legal_user_id_edit">
+            <div class="col">
+                <label for="company_name" class="form-label">Company Name</label>    
+                <input type="text" id="company_name_edit" name="company_name" class="form-control">
+            </div>
+            <div class="col">
+            <label for="company_address" class="form-label">Company address</label>    
+                <input type="text" id="company_address_edit" name="company_address" class="form-control">
+            </div>
+            </div> 
+            <div class="row">
+                <h6 class="mt-3">REPRENSENTATTIVE</h6>
+                <div class="col">
+                <label for="legal_firstname" class="form-label">Firstname:</label>    
+                <input type="text" id="legal_firstname_edit" name="legal_firstname_edit"  class="form-control">
+                </div>
+                <div class="col">
+                <label for="legal_middlename" class="form-label">Middle Name:</label>    
+                <input type="text" id="legal_middlename_edit"  name="legal_middlename"class="form-control">
+                </div>
+                <div class="col">
+                <label for="legal_lastname" class="form-label">LastName:</label>    
+                <input type="text" id="legal_lastname_edit" name="legal_lastname" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+               <div class="col">
+                <label for="legal_email_one" class="form-label">Email address</label>    
+                <input type="email" id="legal_email_one_edit" name="legal_email_one" class="form-control">
+               </div>
+               <div class="col">
+                <label for="legal_email_two" class="form-label">Email address</label>    
+                <input type="email" id="legal_email_two_edit" name="legal_email_two" class="form-control">
+               </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                <label for="legal_contact_one" class="form-label">Contact</label>    
+                <input type="text" id="legal_contact_one_edit" name="legal_contact_one"  class="form-control">
+                </div>
+                <div class="col">
+                <label for="legal_email_two" class="form-label">Contact</label>    
+                <input type="email" id="legal_contact_two_edit"  name="legal_contact_two" class="form-control">
+                </div>
+            </div>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="edit_legal_btn"class="btn btn-warning">Save changes</button>
+      </div>
+      </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- MODAL END HERE-->
 
 <div class="row">
@@ -95,7 +192,7 @@ $('#entityList').DataTable({});
                       ADD
                     </button> 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addEntityUser">Legal Entity</a></li>     
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addEntityUserModal">Legal Entity</a></li>     
                     </ul>
                     </div>
                     </div>
@@ -150,10 +247,10 @@ $('#entityList').DataTable({});
                                 
                                <div class="d-flex justify-content-end ">
              
-                                <div class="col"><button class="btn btn-sm btn-primary" id="view_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div>   
-                                <div class="col"><button class="btn btn-sm btn-danger"id="delete_user"  value="<?php echo $row['id']?>"><img src="./src/img/trash-can.png" alt=""></button></div>
+                                <div class="col"><button class="btn btn-sm btn-primary" id="legal_view_user"  value=<?php echo $row['id']?>'><img src="./src/img/view (1).png"alt=""></button></div>   
+                                <div class="col"><button class="btn btn-sm btn-danger"id="legal_delete_user"  value="<?php echo $row['id']?>"><img src="./src/img/trash-can.png" alt=""></button></div>
                                 <!-- <div class="col"><button class="btn btn-sm btn-success" id="edit_userbtn"  value="<?php echo $row['id']?>"><img src="./src/img/pen.png" alt=""></button></div>    -->
-                                <div class="col"><button class="btn btn-sm btn-success"id="edit_userbtn"  value="<?php echo $row['id']?>"><img src="./src/img/pen.png" alt=""></button></div>
+                                <div class="col"><button class="btn btn-sm btn-success"id="legal_edit_user"  value="<?php echo $row['id']?>"><img src="./src/img/pen.png" alt=""></button></div>
                                 </div>
                               
 
@@ -172,4 +269,7 @@ $('#entityList').DataTable({});
         </div>
     </div>
 </div> 
+
+
+<script src="./src/js/routing.js"></script> 
 <script src="./ajaxscript/js/controller_legal.js"></script>
