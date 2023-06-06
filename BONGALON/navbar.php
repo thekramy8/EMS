@@ -52,7 +52,7 @@
         </li>
        
         <li class="nav-item " >
-          <a class="nav-link" aria-current="page" style="color:#ADA06D;">CASES</a>
+          <a class="nav-link" aria-current="page" href="case" data-page="case" style="color:#ADA06D;">CASES</a>
         </li>
 
         <li class="nav-item " >

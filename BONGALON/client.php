@@ -299,7 +299,7 @@ $('#clientList').DataTable({});
                     <input type="text" id="editaddress_two" name="editaddress_two"  class="form-control"  placeholder="Address 2">
                     </div>
                 </div>
-                            <div class="modal-footer">
+                        <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="submit" class="btn btn-warning">Save changes</button> -->
                     <button type="submit" class="btn btn-warning">Save changes</button>

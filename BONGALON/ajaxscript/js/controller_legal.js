@@ -165,13 +165,21 @@ var legal_user_ids = $(this).val();
                 $("#legal_email_one_edit") .val(result.data.first_email);       
                 $("#legal_email_two_edit") .val(result.data.second_email);       
                 $("#company_name_edit").val(result.data.company_name);
-                $("#company_name_edit").val(result.data.address_name);
-          
-               
+                $("#company_address_edit").val(result.data.company_address);
+
                 $("#editentityUserModal").modal("show"); 
 
             }
         } 
   });
       
-});
+}); 
+
+
+
+
+
+
+
+
+

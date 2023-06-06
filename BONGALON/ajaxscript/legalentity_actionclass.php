@@ -57,7 +57,7 @@
         if ($stmt->execute()) {
             $response = [
                 'status' => 200,
-                'message' => 'User created successfully.'
+                'message' => 'Legal Entity created successfully.'
             ];
         } else {
             $response = [
@@ -166,5 +166,11 @@
                 return false;
         }
 }  
+
+
+
+
+//UPDATING THE LEGAL ENTITY
+
 
 ?>

@@ -1,6 +1,6 @@
 $('#submit_entity').on('click',function(e){
     e.preventDefault();
-    console.log('ss');
+ 
     var formData =  new FormData($('#add_entity_form')[0]); 
     formData.append('save_client',true); 
    // var serializedData = new URLSearchParams(formData).toString();

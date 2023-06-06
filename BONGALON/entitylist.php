@@ -115,17 +115,16 @@ $('#entityList').DataTable({});
       </div>
       <div class="modal-body">
             
-      <form action="" id="save_entity_Form">
-        <div class="row"> 
-
-                <input type="hidden" id="legal_user_id_edit"name="legal_user_id_edit">
+      <form action="" id="update_entity_Forms">
+            <div class="row">
             <div class="col">
+            <input type="text" id="legal_user_id_edit"name="legal_user_id_edit">
                 <label for="company_name" class="form-label">Company Name</label>    
-                <input type="text" id="company_name_edit" name="company_name" class="form-control">
+                <input type="text" id="company_name_edit" name="company_name_edit" class="form-control">
             </div>
             <div class="col">
             <label for="company_address" class="form-label">Company address</label>    
-                <input type="text" id="company_address_edit" name="company_address" class="form-control">
+                <input type="text" id="company_address_edit" name="company_address_edit" class="form-control">
             </div>
             </div> 
             <div class="row">
@@ -136,38 +135,40 @@ $('#entityList').DataTable({});
                 </div>
                 <div class="col">
                 <label for="legal_middlename" class="form-label">Middle Name:</label>    
-                <input type="text" id="legal_middlename_edit"  name="legal_middlename"class="form-control">
+                <input type="text" id="legal_middlename_edit"  name="legal_middlename_edit"class="form-control">
                 </div>
                 <div class="col">
                 <label for="legal_lastname" class="form-label">LastName:</label>    
-                <input type="text" id="legal_lastname_edit" name="legal_lastname" class="form-control">
+                <input type="text" id="legal_lastname_edit" name="legal_lastname_edit" class="form-control">
                 </div>
             </div>
             <div class="row">
                <div class="col">
                 <label for="legal_email_one" class="form-label">Email address</label>    
-                <input type="email" id="legal_email_one_edit" name="legal_email_one" class="form-control">
+                <input type="email" id="legal_email_one_edit" name="legal_email_one_edit" class="form-control">
                </div>
                <div class="col">
                 <label for="legal_email_two" class="form-label">Email address</label>    
-                <input type="email" id="legal_email_two_edit" name="legal_email_two" class="form-control">
+                <input type="email" id="legal_email_two_edit" name="legal_email_two_edit" class="form-control">
                </div>
             </div>
             <div class="row">
                 <div class="col">
                 <label for="legal_contact_one" class="form-label">Contact</label>    
-                <input type="text" id="legal_contact_one_edit" name="legal_contact_one"  class="form-control">
+                <input type="text" id="legal_contact_one_edit" name="legal_contact_one_edit"  class="form-control">
                 </div>
                 <div class="col">
                 <label for="legal_email_two" class="form-label">Contact</label>    
-                <input type="email" id="legal_contact_two_edit"  name="legal_contact_two" class="form-control">
+                <input type="text" id="legal_contact_two_edit"  name="legal_contact_two_edit" class="form-control">
                 </div>
             </div>
-        </div>
-      <div class="modal-footer">
+            <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="edit_legal_btn"class="btn btn-warning">Save changes</button>
+        <button type="submit" id="edit_legal_btn"class="btn btn-warning">Save changes</button>
       </div>
+            </div>
+       
+           
       </form>
 
       </div>
@@ -205,7 +206,7 @@ $('#entityList').DataTable({});
             </span> 
             <div class="row mt-2 m-4">
                 <div class="table-responsive">
-                    <table id="entityList"class="table table-hover" style="width:100%;font-size:13px;">
+                    <table id="entityList" class="table table-hover" style="width:100%;font-size:13px;">
                            
                           <thead>
                           <tr>
@@ -233,15 +234,15 @@ $('#entityList').DataTable({});
                         ?>
 
                     <tr>
-                            <?php  $names =  $row["firstname"].' '.$row["lastname"]; ?>
+                            <?php  $names =  $row["firstname"].' '.$row['middlename'].' '.$row["lastname"]; ?>
                             <td class="text-center"><?php echo  $i++;?></td>
                             <td class="text-center"><?php echo $row['company_name'];?></td>
                             <td class="text-center"><?php echo $row['company_address'];?></td>
                             <td class="text-center"><?php echo $names?></td>
                             <td class="text-center"><?php echo $row['first_email'];?></td>
                             <td class="text-center"><?php echo $row['second_email'];?></td>
-                            <td class="text-center"><?php echo $row['first_email'];?></td>
-                            <td class="text-center"><?php echo $row['second_email'];?></td>
+                            <td class="text-center"><?php echo $row['first_contact'];?></td>
+                            <td class="text-center"><?php echo $row['second_contact'];?></td>
                           
                             <td>
                                 
@@ -271,5 +272,46 @@ $('#entityList').DataTable({});
 </div> 
 
 
-<script src="./src/js/routing.js"></script> 
+<script src="./src/js/routing.js"></script>  
+<script>
+    $(document).on('submit',"#update_entity_Forms",function(e){
+    e.preventDefault();
+   
+    var formData = new FormData(this);
+    formData.append("legal_update_users",true);
+    $.ajax({ 
+      type:"POST",url:"./ajaxscript/legal_update.php",data:formData,
+      processData:false,contentType:false,
+    
+      success:function(response)
+      {
+          var result = jQuery.parseJSON(response); 
+          if(result.status == 500)
+          {
+            alertify.set('notifier','positions','top-right'); 
+            alertify.success(result.message); 
+          }
+          else if(result.status == 200)
+          {
+         
+            alertify.set('notifier','positions','top-right'); 
+            alertify.success(result.message); 
+          
+            $('#editentityUserModal').modal('hide');
+           $('#update_entity_Forms')[0].reset();
+            //  $('#userList').load(location.href+ " #userList");;
+            loadContent('entitylist'); 
+            } 
+       
+         // abortController.abort();
+       $(document).off('submit', '#update_entity_Forms');
+      } 
+  
+  
+    });
+  //  xhr.abort(); 
+  }); 
+
+
+</script>
 <script src="./ajaxscript/js/controller_legal.js"></script>
