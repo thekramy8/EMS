@@ -62,7 +62,7 @@ $('#userList').DataTable({});
 
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" id="submit_entity" class="btn btn-warning">Save changes</button>
+        <button type="button" id="submit_entity" class="btn btn-warning">Save changes</button>
         
         </div>
         </form>
