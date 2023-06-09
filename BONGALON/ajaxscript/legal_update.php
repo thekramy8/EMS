@@ -12,7 +12,10 @@ if($_POST['legal_update_users']){
     $email_One =$_POST['legal_email_one_edit']; 
     $email_Two =$_POST['legal_email_two_edit']; 
     $contactOne = $_POST['legal_contact_one_edit'];
-    $contactTwo = $_POST['legal_contact_two_edit'];
+    $contactTwo = $_POST['legal_contact_two_edit']; 
+
+
+    
 
     $validEmails = true;
     if (!filter_var($email_One,FILTER_VALIDATE_EMAIL)) {

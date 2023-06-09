@@ -35,6 +35,7 @@
         <li class="nav-item " >
           <a class="nav-link " aria-current="page" href="dashboard" data-page="home" style="color:#ADA06D;">DASHBOARD</a>
         </li>
+
         <li class="nav-item" >
           <div class="dropdown">
           <a class="nav-link active btn dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">CLIENTS</a>
@@ -51,9 +52,21 @@
         
         </li>
        
-        <li class="nav-item " >
+        <!-- <li class="nav-item " >
           <a class="nav-link" aria-current="page" href="case" data-page="case" style="color:#ADA06D;">CASES</a>
-        </li>
+        </li> -->
+         
+       <li class="nav-item" >
+          <div class="dropdown">
+          <a class="nav-link active btn dropdown-toggle" id="cases_btn" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">CASES</a>
+
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <li><a class="dropdown-item" href="caselist" data-page="caselist">Case List</a></li>  
+            <li><a class="dropdown-item"  href="case" data-page="case">Team Member</a></li>
+                </div>
+        
+          </li> 
 
         <li class="nav-item " >
           <a class="nav-link " aria-current="page" href="userlist" data-page="userlist"  style="color:#ADA06D;">USERS</a>
@@ -63,10 +76,22 @@
         <!-- <li class="nav-item" >
           <a class="nav-link active" aria-current="page" href="userlist" data-page="userlist" style="color:#ADA06D;">CLIENTS</a>
         </li> -->
-
+<!-- 
         <li class="nav-item " >
           <a class="nav-link" aria-current="page" href="#" style="color:#ADA06D;">TASK</a>
-        </li>
+        </li> --> 
+        <li class="nav-item" >
+          <div class="dropdown">
+          <a class="nav-link active btn dropdown-toggle" id="cases_btn" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">TASK</a>
+
+
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+           <li><a class="dropdown-item" href="task_manage" data-page="task_manage">Manage Task</a></li>  
+            <li><a class="dropdown-item"  href="case" data-page="case">Progress</a></li>
+            <li><a class="dropdown-item"  href="task_caseupdate" data-page="task_caseupdate">Case Updates</a></li>
+           </div>
+        
+          </li> 
 
         <li class="nav-item " >
           <a class="nav-link" aria-current="page" href="#" style="color:#ADA06D;">REPORTS</a>

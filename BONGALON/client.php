@@ -346,10 +346,11 @@ $('#clientList').DataTable({});
             </span>
             <div class="row mt-2 m-4">
                 <div class="table-responsive " style="overflow:auto;">
-                <table id="clientList" class="table table-hover  "style="width:100%;font-size:13px; ">
+                <table id="clientList" class="table table-hover  "style="width:100%;font-size:11px; ">
         <thead >
             <tr > 
-                <th class="text-center" >NO.</th>
+                <th class="text-center" >#</th>
+                <th class="text-center"style="width:80px;">Client No.</th>
                 <th class="text-center">LastName</th>
                 <th class="text-center">FirstName</th>
                 <th class="text-center">MiddleName</th>
@@ -379,14 +380,19 @@ $('#clientList').DataTable({});
                 <td   class="text-center">
                  <b><?php echo $i++ ?></b>
                 </td>  
-                    
+                <td  class="text-center" ><b><?php echo $row['client_id'] ?></b></td>
                   <td  class="text-center" >
                   <?php echo $row['lastname'] ?>
                  </td>
 
+
                  <td  class="text-center" ><?php echo $row['firstname'] ?></td>
                  <td  class="text-center" ><?php echo $row['middlename'] ?></td>
-                 <td  class="text-center" ><?php echo $row['gender'] ?></td>
+                 <td  class="text-center" ><?php if($row['gender'] == 0){
+                  echo 'Not Assigned';
+                 }else{  echo $row['gender']; }?>
+                 
+               </td>
                  <td  class="text-center" ><?php echo $row['first_email'] ?></td>
                  <td  class="text-center" ><?php echo $row['second_email'] ?></td>
                  <td  class="text-center" ><?php echo $row['first_contact'] ?></td>
@@ -470,7 +476,6 @@ $('#clientList').DataTable({});
     
 
   <script src="./src/js/routing.js"></script> 
- 
   <script src="./ajaxscript/js/controller_ajax.js"></script>   
   <script src="./ajaxscript/js/update.js"></script>
 

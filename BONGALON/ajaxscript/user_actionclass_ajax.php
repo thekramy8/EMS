@@ -5,7 +5,8 @@
     //SAVING USER INTO DATABASE 
 
     if(isset($_POST['save_user']))
-    {
+    {   
+     
         $lastName = $_POST['lastName']; 
         $firstName = $_POST['firstName']; 
         $middleName = $_POST['middleName']; 
@@ -16,6 +17,14 @@
         $contactTWO = $_POST['contactTwo'];
         $addOne =$_POST['address_one'];
         $addTwo =$_POST['address_two'];
+        
+        $prefix= date('Y');
+        $id = uniqid();
+        $numericId = preg_replace("/[^0-9]/", "", $id);
+        $shortUniqueIs = substr($numericId, 0, 8);
+       
+        $caseId = $prefix . '-' . $shortUniqueIs; //case_number
+            
         
 
     if (empty($lastName) || empty($firstName) || empty($middleName) ||empty($emailone) || empty($contactONE) || empty($addOne)) {
@@ -53,10 +62,10 @@
    
     
 
-    $stmt = $conn->prepare("INSERT INTO tbl_client_list (firstname , middlename , lastname , gender , first_email, second_email, first_contact,
-    second_contact, first_address, second_address) VALUES (?,?,?,?,?,?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO tbl_client_list (client_id,firstname , middlename , lastname , gender , first_email, second_email, first_contact,
+    second_contact, first_address, second_address) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
     
-    $stmt->bind_param("ssssssssss", $firstName, $middleName, $lastName, $gender, $emailone, $emailtwo, $contactONE,$contactTWO,$addOne,$addTwo); 
+    $stmt->bind_param("sssssssssss", $caseId, $firstName, $middleName, $lastName, $gender, $emailone, $emailtwo, $contactONE,$contactTWO,$addOne,$addTwo); 
 
 
     if ($stmt->execute()) {

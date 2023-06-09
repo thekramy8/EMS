@@ -13,7 +13,15 @@
         $emailtwo = $_POST['legal_email_two']; 
         $contactONE = $_POST['legal_contact_one'];
         $contactTWO = $_POST['legal_contact_two'];
-
+ 
+        $prefix=  date('Y');
+        $id = uniqid();
+        $numericId = preg_replace("/[^0-9]/", "", $id);
+        $shortUniqueIs = substr($numericId, 0, 8);
+        
+     
+        $caseId = $prefix . '-' . $shortUniqueIs; //case_number
+            
 
         if (empty($lastName) || empty($firstName) || empty($middleName) ||empty($emailone) || empty($contactONE) || empty($companyName) || empty($companyAddress)) {
             $response = [
@@ -49,9 +57,9 @@
 
 
         $stmt = $conn->prepare("INSERT INTO tbl_entity_list (firstname , middlename , lastname , first_email, second_email, first_contact,
-        second_contact,company_name,company_address) VALUES (?,?,?,?,?,?,?,?,?)");
+        second_contact,company_name,company_address,case_id) VALUES (?,?,?,?,?,?,?,?,?,?)");
         
-        $stmt->bind_param("sssssssss", $firstName, $middleName, $lastName, $emailone, $emailtwo, $contactONE,$contactTWO,$companyName,$companyAddress); 
+        $stmt->bind_param("ssssssssss", $firstName, $middleName, $lastName, $emailone, $emailtwo, $contactONE,$contactTWO,$companyName,$companyAddress,$caseId); 
     
     
         if ($stmt->execute()) {

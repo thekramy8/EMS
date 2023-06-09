@@ -118,7 +118,7 @@ $('#entityList').DataTable({});
       <form action="" id="update_entity_Forms">
             <div class="row">
             <div class="col">
-            <input type="text" id="legal_user_id_edit"name="legal_user_id_edit">
+            <input type="hidden" id="legal_user_id_edit"name="legal_user_id_edit">
                 <label for="company_name" class="form-label">Company Name</label>    
                 <input type="text" id="company_name_edit" name="company_name_edit" class="form-control">
             </div>
@@ -210,7 +210,8 @@ $('#entityList').DataTable({});
                            
                           <thead>
                           <tr>
-                                    <th class="text-center">NO.</th>
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Case No</th>
                                     <th class="text-center">Company Name</th>
                                     <th class="text-center">Company Address</th>
                                     <th class="text-center">Representative</th>
@@ -236,6 +237,7 @@ $('#entityList').DataTable({});
                     <tr>
                             <?php  $names =  $row["firstname"].' '.$row['middlename'].' '.$row["lastname"]; ?>
                             <td class="text-center"><?php echo  $i++;?></td>
+                            <td class="text-center"><b><?php echo $row['case_id'];?></b></td>
                             <td class="text-center"><?php echo $row['company_name'];?></td>
                             <td class="text-center"><?php echo $row['company_address'];?></td>
                             <td class="text-center"><?php echo $names?></td>
