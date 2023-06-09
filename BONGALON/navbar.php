@@ -85,7 +85,7 @@
           <a class="nav-link active btn dropdown-toggle" id="manage_task" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">TASK</a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
            <li><a class="dropdown-item" href="task_manage" data-page="task_manage">Manage Task</a></li>  
-            <li><a class="dropdown-item"  href="case" data-page="case">Progress</a></li>
+            <li><a class="dropdown-item"  href="task_status" data-page="task_status">Progress</a></li>
             <li><a class="dropdown-item"  href="task_progress" data-page="task_progress">Case Updates</a></li>
            </div>
         

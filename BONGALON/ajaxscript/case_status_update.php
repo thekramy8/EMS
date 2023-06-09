@@ -31,6 +31,31 @@ if($_POST['update_case_status']){
 
 //view case infomation to assign lawyer
 
+if($_POST['update_add_task']){
+        
+    $userId =  $_GETT['task_id_input'];
+    
+    $startDate = $_GET['start_task_date'];
+    $endtDate = $_GET['end_task_date']; 
+    $remarks = $_GET['add_task_remarks']; 
+ 
+     $editAccount = $conn->prepare("UPDATE tbl_case_list SET start_date = ?,end_date = ?,remarks =?  WHERE cases.id =?"); 
+     $editAccount->bind_param("sssi",$startDate,$endtDate,$remarks,$userId);
+     $result = $editAccount->execute();
+         if ($result) {
+             $res = [
+                 'status' => 200,
+                 'message' => 'Case Status Update successfully.'
+             ];
+         } else {
+             $res = [
+                 'status' => 500,
+                 'message' => 'Not Assign successfully.'
+             ];
+         }
+         echo json_encode($res);
+         return false;
+ } 
 
+?> 
 
-?>

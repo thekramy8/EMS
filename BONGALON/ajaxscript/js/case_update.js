@@ -68,4 +68,46 @@ $(document).on('submit',"#assign_lawyer_Form",function(e){
   
     });
   //  xhr.abort(); 
-  });
+  }); 
+
+  $(document).on('click','#deletetask_progressbtn',function(e){
+    e.preventDefault();
+    var entity_id = $(this).val();
+
+    Swal.fire({
+     title: 'Are you sure to delete this user?',
+     icon: 'warning', 
+     width:'500px' ,  
+     showCancelButton: true,
+     cancelButtonColor: '#d33',
+     confirmButtonText: 'Yes, delete it!'
+   
+   
+  }).then((result) => {
+     if (result['isConfirmed']){
+
+         $.ajax({
+             type:"POST", 
+             url:"./ajaxscript/delete_task.php",
+             data:{'delete_task':true,'user_id':entity_id},
+
+             success: function(response)
+             {
+                 var result = jQuery.parseJSON(response); 
+                 if(result.status == 500)
+                 {
+                     Swal.fire(result.message);
+
+                 }else if(result.status ==200)
+                 {   alertify.set('notifier', 'delay', 1);
+                     alertify.set('notifier','positions','top-right'); 
+                     alertify.success(result.message); 
+                     loadContent('task_manage');
+                 }
+             
+             }
+         });
+     }
+});
+
+});

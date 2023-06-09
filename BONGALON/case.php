@@ -284,7 +284,7 @@ $('#caseList').DataTable({});
 <script>
     $(document).on('click','#assign_lawyer_Btn',function(e){
         e.preventDefault(); 
-    var id =  $(this).val(); 
+         var id =  $(this).val(); 
        $("#assign_lawyer_Modal").modal('show');
     });
 </script>  

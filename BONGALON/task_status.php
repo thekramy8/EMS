@@ -71,13 +71,6 @@ $('#caseLists').DataTable({});
            
 
            <div class="form-floating">
-          <textarea class="form-control" name="add_task_text" id="add_task_text" style="height: 100px"></textarea>
-          <label for="add_task_remarks">Task</label>
-        </div>
-
-
-
-           <div class="form-floating">
           <textarea class="form-control" name="add_task_remarks" id="add_task_remarks" style="height: 100px"></textarea>
           <label for="add_task_remarks">Remarks</label>
         </div>
@@ -149,8 +142,8 @@ $('#caseLists').DataTable({});
                                     <th class="text-center" style="width:20px;">#</th>
                                     <th class="text-center " >Case Number</th>
                                     <th class="text-center">Client Name</th>
-                                    <th class="text-center" style="width:100px;">Case</th>
-                                    <th class="text-center" style="width:100px;">Case Sub Type</th>
+                                    <!-- <th class="text-center" style="width:100px;">Case</th>
+                                    <th class="text-center" style="width:100px;">Case Sub Type</th> -->
                                     <th class="text-center">Lawyer</th>
                                     <th class="text-center" style="width:100px;">Case Status</th>
                                     <th class="text-center" >ACTION</th>
@@ -172,8 +165,8 @@ $('#caseLists').DataTable({});
                                     <td class="text-center"><?php echo $i++?></td>
                                     <td class="text-center" ><b><?php echo $row['case_number'];?></b></td>
                                     <td class="text-center"><?php echo $row['firstname'].' '.$row['middlename'] .' '. $row['lastname']?></td>
-                                    <td class="text-center"><?php  echo $row['case_type']?></td>
-                                    <td class="text-center"><?php  echo $row['case_sub_type']?></td>
+                                    <!-- <td class="text-center"><?php  echo $row['case_type']?></td>
+                                    <td class="text-center"><?php  echo $row['case_sub_type']?></td> -->
                                     <td class="text-center"><?php if( $row['lawyer_user_id']== 0){
                                          echo  $row['lawyer_user_id'] = 'none';
                                     }else echo $row['user_fullname'];
@@ -182,18 +175,19 @@ $('#caseLists').DataTable({});
                          
                                     <td class="text-center"><?php echo $row['case_status'];?></td>
                                     <td>                                
-                                    <div class="container d-flex  justify-content-center">                             
-                                   <div class="col "><button class="btn btn-sm btn-secondary" id="addtask_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/time-management.png" alt=""> 
-                                   </button></div>
-                                   <div class="col"><button class="btn btn-sm btn-primary" id="viewtask_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/view (1).png" alt=""> 
+                                    <div class="container d-flex justify-content-end" >                             
+                                   <!-- <div class="col "><button class="btn btn-sm btn-secondary" id="addtask_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/time-management.png" alt=""> 
+                                   </button></div> -->
+                                 
+                                   <div class="col d-flex justify-content-center"><button class="btn btn-sm btn-primary" id="viewtask_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/view (1).png" alt=""> 
                                    </button></div>
                                     
                                    <!-- <div class="col"><button class="btn btn-sm btn-danger" id="deletetask_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/trash-can.png" alt=""> 
                                    </button></div> -->
 
-                                   <!-- <div class="col"><button class="btn btn-sm btn-success" id="edit_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/pen.png" alt=""> 
+                                   <div class="col d-flex  justify-content-start"><button class="btn btn-sm btn-success" id="edit_progressbtn" value="<?php echo $row['id'];?>"><img src="./src/img/pen.png" alt=""> 
                                    </button></div>
-                                   -->
+                                  
                                   </div>
                                 </td>
 
@@ -300,7 +294,7 @@ $.ajax({
 
             // $('#viewlastname').text("Name: "+  result.data.firstname+ " "+ result.data.middlename+ " "+  result.data.lastname);
             $('#view_task_information').html("Name: <span class='name'>" + result.data.firstname + " "+ result.data.middlename +" "+ result.data.lastname
-                +"</span><br>"
+                +"</span><br>" +"Status: <span class='name'>" + result.data.case_status+"</span><br>"
                 +"Casetype: <span class='name'>" + result.data.case_type +"</span><br>"
                 +"Sub Type: <span class='name'>" + result.data.case_sub_type+"</span><br>"
                 +"Case number: <span class='name'>" + result.data.case_number+"</span><br>"
