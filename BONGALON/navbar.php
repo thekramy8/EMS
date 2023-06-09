@@ -82,13 +82,11 @@
         </li> --> 
         <li class="nav-item" >
           <div class="dropdown">
-          <a class="nav-link active btn dropdown-toggle" id="cases_btn" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">TASK</a>
-
-
+          <a class="nav-link active btn dropdown-toggle" id="manage_task" aria-expanded="false" data-bs-toggle="dropdown" style="color:#ADA06D;">TASK</a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
            <li><a class="dropdown-item" href="task_manage" data-page="task_manage">Manage Task</a></li>  
             <li><a class="dropdown-item"  href="case" data-page="case">Progress</a></li>
-            <li><a class="dropdown-item"  href="task_caseupdate" data-page="task_caseupdate">Case Updates</a></li>
+            <li><a class="dropdown-item"  href="task_progress" data-page="task_progress">Case Updates</a></li>
            </div>
         
           </li> 

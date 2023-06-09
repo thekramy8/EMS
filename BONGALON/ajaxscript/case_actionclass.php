@@ -46,13 +46,9 @@ if($_POST['update_case']){
     $lawyer_id = $_POST['select_lawyer_id'];
     $remarks =$_POST['lawyer_remarks'];   
    $case_id = $_SESSION['lawyer_id_session'];
-
-
     $editAccount = $conn->prepare("UPDATE tbl_case_list AS cases SET cases.lawyer_user_id = ? ,cases.remarks =? WHERE cases.id =?"); 
     $editAccount->bind_param("isi",$lawyer_id,$remarks,$case_id);
     $result = $editAccount->execute();
-
-   
         if ($result) {
             $res = [
                 'status' => 200,
@@ -64,12 +60,11 @@ if($_POST['update_case']){
                 'message' => 'Not Assign successfully.'
             ];
         }
-    
         echo json_encode($res);
         return false;
-    
-
-
 }
+ //case status update
+
+
 
 ?>

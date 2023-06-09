@@ -63,7 +63,8 @@ $(document).on('submit',"#update_user_entity_form",function(e){
        
          $('#editAccountModal').modal('hide');
          $('#update_user_entity_form')[0].reset();
-
+          
+            alertify.set('notifier', 'delay', 1);
             alertify.set('notifier','positions','top-right'); 
             alertify.success(result.message); 
 
@@ -74,8 +75,6 @@ $(document).on('submit',"#update_user_entity_form",function(e){
        // abortController.abort();
      $(document).off('submit', '#update_user_entity_form');
     } 
-
-
   });
 //  xhr.abort(); 
 });  

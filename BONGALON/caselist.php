@@ -196,6 +196,5 @@ $('#caseLists').DataTable({});
      $(document).ready(function() {
     $('#cases_btn').addClass('selected');
 });
-
 </script> 
 

@@ -60,7 +60,7 @@ $('#clientList').DataTable({});
                   </div>
 
                   <div class="col">
-                  <label for="exampleInputEmail1" class="form-label">ALternate Email</label>
+                  <label for="exampleInputEmail1" class="form-label">Alternate Email</label>
                  <input type="email" class="form-control" id="exampleInputEmail1"name ="emailTwo" aria-describedby="emailHelp">
                   </div>
                 </div>
@@ -256,7 +256,7 @@ $('#clientList').DataTable({});
                     <div class="col">
                     <label class="form-label">Gender:</label>
                     <select class="form-select form-select-md mb-2" aria-label=".form-select-lg example" name="editGender" id="editGender">
-                    <option value="0">SELECT</option>
+                   
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     </select>
@@ -298,12 +298,14 @@ $('#clientList').DataTable({});
                     <label class="form-label">Address 2:</label>
                     <input type="text" id="editaddress_two" name="editaddress_two"  class="form-control"  placeholder="Address 2">
                     </div>
-                </div>
-                        <div class="modal-footer">
+                    <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <!-- <button type="submit" class="btn btn-warning">Save changes</button> -->
                     <button type="submit" class="btn btn-warning">Save changes</button>
                 </div>
+                 
+                
+                  </div>
             </form>
       </div>
 
@@ -441,9 +443,9 @@ $('#clientList').DataTable({});
                var result = jQuery.parseJSON(response); 
                 if(result.status == 500)
                 {
-                    alertify.set('notifier', 'position', 'top-right');
-                    alertify.set('notifier', 'delay', 1);
-                    alertify.success(result.message);
+                  alertify.set('notifier', 'delay', 1);
+                  alertify.set('notifier', 'position', 'top-right');
+                   alertify.success(result.message);
                 }
                 
                 else if(result.status == 200)
@@ -452,7 +454,7 @@ $('#clientList').DataTable({});
                     $("#editfirstName").val(result.data.firstname);    
                     $("#editmiddleName").val(result.data.middlename);    
                     $("#editlastName").val(result.data.lastname);               
-                    $("#editgender").val(result.data.gender);   
+                    $("#editGender").val(result.data.gender);   
                                                               
                     $("#editemailOne").val(result.data.first_email);   
                     $("#editemailTwo").val(result.data.second_email);   

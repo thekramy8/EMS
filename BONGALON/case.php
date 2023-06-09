@@ -118,7 +118,9 @@ $('#caseList').DataTable({});
       </div>
       <div class="modal-body">
             <form action="" id="assign_lawyer_Form"> 
-
+            <div class="col">
+                <p id="view_case_information"></p>
+            </div>
             <div class="row mb-3">
             <?php   
                     include './db_connection.php';
@@ -138,20 +140,22 @@ $('#caseList').DataTable({});
                 <?php   endwhile; ?>
             </select>
           
+            </div> 
+           
             </div>
-            </div>
+          
             <div class="row">
             <div class="input-group">
             <span class="input-group-text">Remarks</span>
             <textarea class="form-control" name="lawyer_remarks" id="lawyer_remarks" aria-label="With textarea"></textarea>
             </div>
     
-          </div>
-
+    
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-warning">Save changes</button>
             </div> 
+        </div>
 
             </form>
       </div>
@@ -190,12 +194,13 @@ $('#caseList').DataTable({});
                                 while($row= $query->fetch_assoc()):           
 				
 					?>      
-                   
+
                             <tr>    
                          
                             <td id="case_modal"class="text-center"><button class="btn btn-sm btn-primary" name="assign_lawyer_Btn" id="assign_lawyer_Btn"  value="<?php echo $row['id']?>" >
                          <?php  $_SESSION['lawyer_id_session'] = $row['id']?>
-                            <?php echo $row['case_number']?></button></td>
+                            <?php echo $row['case_number']?></button>
+                        </td>
                             </tr>
                             <?php endwhile;?>
 					</tbody>
@@ -236,8 +241,7 @@ $('#caseList').DataTable({});
                                     <th class="text-center">#</th>
                                     <th class="text-center">Lawyer Name</th>
                                     <th class="text-center">No.of Cases</th>
-                                    <th class="text-center">Case Details</th>
-                                    <th class="text-center">Case Status</th>
+                                  
                             
                             
                                      </tr>
@@ -247,7 +251,7 @@ $('#caseList').DataTable({});
                                 require './db_connection.php';
                                 $client_list = "SELECT COUNT(*) AS user_count, user.user_fullname, lawyer.id,lawyer.case_status,lawyer.case_details
                                 FROM tbl_case_list AS lawyer
-                                INNER JOIN tbl_user_list AS user ON user.id = lawyer.lawyer_user_id  GROUP BY lawyer.lawyer_user_id
+                                INNER JOIN tbl_user_list AS user ON user.id = lawyer.lawyer_user_id WHERE lawyer.case_status ='Ongoing' GROUP BY lawyer.lawyer_user_id
                                 ";
                                 $query = $conn->query($client_list);
                                 $i = 1; 
@@ -257,10 +261,6 @@ $('#caseList').DataTable({});
                                     <td class="text-center"><b><?php echo $i++?></b></td>  
                                     <td class="text-center"><?php echo $row['user_fullname']?></td> 
                                     <td class="text-center"><b><?php echo $row['user_count']?></b></td> 
-                                    <td class="text-center"><?php echo $row['case_details']?></td> 
-                                    <td class="text-center"><?php echo $row['case_status']?></td> 
-                     
-
                                 </tr>
                             <?php endwhile;?>
                             </tbody>
@@ -273,6 +273,8 @@ $('#caseList').DataTable({});
 </div>
 <script src="./src/js/routing.js"></script>
 <script src="./ajaxscript/js/controller_case.js"></script>
+<script src="./ajaxscript/js/case_update.js"></script>
+
 <script>
      $(document).ready(function() {
     $('#cases_btn').addClass('selected');
@@ -283,58 +285,42 @@ $('#caseList').DataTable({});
     $(document).on('click','#assign_lawyer_Btn',function(e){
         e.preventDefault(); 
     var id =  $(this).val(); 
-    var lawyer = $('#lawyer_id').val();
-    console.log(id);
-    console.log(lawyer);
        $("#assign_lawyer_Modal").modal('show');
     });
-</script> 
+</script>  
 
 <script>
-    
+  $(document).on('click','#assign_lawyer_Btn',function(){ 
 
-$(document).on('submit',"#assign_lawyer_Form",function(e){
-    e.preventDefault();
-   
-    var formData = new FormData(this);
-    formData.append("update_case",true);
-    $.ajax({ 
-      type:"POST",url:"./ajaxscript/case_actionclass.php",data:formData,
-      processData:false,contentType:false,
-    
-      success:function(response)
-      {
-          var result = jQuery.parseJSON(response); 
-         
-          if(result.status == 200)
-          {
-         
-           $('#assign_lawyer_Modal').modal('hide');
-           $('#assign_lawyer_Form')[0].reset();
-  
-              alertify.set('notifier','positions','top-right'); 
-              alertify.success(result.message); 
-  
-            //  $('#userList').load(location.href+ " #userList");;
-             
-            } 
-          loadContent('case'); 
-         // abortController.abort();
-       $(document).off('submit', '#assign_lawyer_Form');
-      } 
-  
-  
-    });
-  //  xhr.abort(); 
-  }); 
+var user_id = $(this).val();
+console.log(user_id);
+$.ajax({
+    type:'GET', 
+    url:"./ajaxscript/case_informatio.php?view_case_information="+user_id,
+    success:function(response){ 
+        var result = jQuery.parseJSON(response);
+        if(result.status == 404)
+        {
+            Swal.Fire(result.message);
+       
+        }else if(result.status == 200){ 
+            // $('#viewlastname').text("Name: "+  result.data.firstname+ " "+ result.data.middlename+ " "+  result.data.lastname);
+            $('#view_case_information').html("Name: <span class='name'>" + result.data.firstname + " "+ result.data.middlename +" "+ result.data.lastname
+                +"</span><br>"
+                +"Casetype: <span class='name'>" + result.data.case_type +"</span><br>"
+                +"Sub Type: <span class='name'>" + result.data.case_sub_type+"</span><br>"
+                +"Case number: <span class='name'>" + result.data.case_number+"</span><br>"
+                ) 
+
+            $('#assign_lawyer_Modal').modal('show');  
+           
+        } 
+
+    }
+
+
+});
+
+});   
 </script>
 
-<!-- <script>
-    $(document).on('click','#show',function(e){
-        e.preventDefault(); 
-    var lawyer = $('#lawyer_id').val();
-   
-    console.log(lawyer);
-      
-    });
-</script> -->

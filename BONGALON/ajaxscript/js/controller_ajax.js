@@ -86,7 +86,6 @@ $(document).on('click','#delete_user',function(e){
 $(document).on('click','#view_user',function(){ 
 
     var user_id = $(this).val();
- 
 
     $.ajax({
         type:'GET', 
