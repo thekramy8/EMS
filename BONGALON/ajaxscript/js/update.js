@@ -80,46 +80,5 @@ $(document).on('submit',"#update_user_entity_form",function(e){
 });  
 
 
-// $(document).on('submit',"#update_entity_Form",function(e){
-//   e.preventDefault();
- 
-//   var formData = new FormData(this);
-//   formData.append("legal_update_user",true);
-//   $.ajax({ 
-//     type:"POST",url:"./ajaxscript/update.php",data:formData,
-//     processData:false,contentType:false,
-  
-//     success:function(response)
-//     {
-//         var result = jQuery.parseJSON(response); 
-//         if(result.status == 500)
-//         {
-//           alertify.set('notifier','positions','top-right'); 
-//           alertify.success(result.message); 
-//         }
-//         else if(result.status == 200)
-//         {
-   
-         
-//          $('#editentityUserModal').modal('hide');
-//          $('#update_entity_Form')[0].reset();
-
-//             alertify.set('notifier','positions','top-right'); 
-//             alertify.success(result.message); 
-//           //   $('#clientList').load(location.href+ " #clientList");;
-//           //   $("#editindividual").modal("hide"); 
-         
-//         } 
-//         loadContent('entitylist'); 
-//        // abortController.abort();
-//      $(document).off('submit', '#update_entity_Form');
-//     } 
-
-
-//   });
-// //  xhr.abort(); 
-// }); 
-
-
 
 

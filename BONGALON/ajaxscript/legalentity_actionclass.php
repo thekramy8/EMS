@@ -142,7 +142,7 @@
 
 
     if(isset($_GET['legal_user_id'])) 
-{ 
+    { 
     $userId = mysqli_real_escape_string($conn,$_GET['legal_user_id']); 
 
     $selectID = "SELECT * FROM tbl_entity_list WHERE id='$userId' "; 

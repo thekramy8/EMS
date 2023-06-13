@@ -101,9 +101,12 @@ $(document).on('click','#legal_delete_user',function(e){
 $(document).on('click','#legal_view_user',function(){ 
 
     var legal_user_id = $(this).val();
- 
+    var data = {
+        caseId: legal_user_id
+        // Add more data as needed
+      };
 
-    $.ajax({
+    $.ajax({ 
         type:'GET', 
         url:"./ajaxscript/legalentity_actionclass.php?view_legal_entity="+legal_user_id,
         success:function(response){ 
@@ -137,6 +140,8 @@ $(document).on('click','#legal_view_user',function(){
 
 
 
+
+//updating legal entity
 $(document).on('click','#legal_edit_user',function(e){ 
     e.preventDefault();
 var legal_user_ids = $(this).val();

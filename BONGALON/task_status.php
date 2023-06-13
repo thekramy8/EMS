@@ -210,7 +210,7 @@ $('#caseLists').DataTable({});
 });
 </script>
 
-<script> 
+<!-- <script> 
   $(document).on('click','#edit_progressbtn',function(e){
   e.preventDefault();
   var id = $(this).val();
@@ -218,18 +218,7 @@ $('#caseLists').DataTable({});
   $("#case_update_Modal").modal('show'); 
 
   });
-</script>  
-
-  <script> 
-
-    $(document).on('click','#addtask_progressbtn',function(e){ 
-      e.preventDefault();
-      var user_id = $(this).val()
-      $('#task_id_input').val(user_id); 
-      $("#addTask_Modal").modal("show");
-
-    });
-  </script>
+</script>   -->
 
   <script>
     
@@ -273,7 +262,7 @@ $('#caseLists').DataTable({});
   $(document).on('click','#viewtask_progressbtn',function(){ 
 
 var user_id = $(this).val();
-console.log(user_id);
+
 $.ajax({
     type:'GET', 
     url:"./ajaxscript/case_informatio.php?view_task_information="+user_id,
@@ -313,7 +302,7 @@ $.ajax({
 });
 
 });   
-</script
+</script>
 
 
 

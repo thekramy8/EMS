@@ -14,7 +14,7 @@
         $clientType = $_POST['clientType'];  
         $caseType =  $_POST['case_type_list']; 
         $caseSubType =  $_POST['case_type_sublist']; 
-        
+    
 
 
         $insertQuery = $conn->prepare("INSERT INTO tbl_case_list(case_number,client_user_id,case_type,case_sub_type,client_type)
@@ -64,7 +64,5 @@ if($_POST['update_case']){
         return false;
 }
  //case status update
-
-
 
 ?>

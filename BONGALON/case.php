@@ -15,6 +15,7 @@ if ($.fn.DataTable.isDataTable('#caseList')) {
 $('#caseList').DataTable({});
 
 });
+
 </script> 
 <!-- MODAL START HERE  -->
 <div class="modal fade" id="addCaseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,10 +65,8 @@ $('#caseList').DataTable({});
             </div>
             </div>
               <h6 class="text-center text-primary">CASE DETAILS</h6>
-            <div class="row mt-2"> 
-              
+               <div class="row mt-2"> 
                 <div class="col">
-             
                 <select class="form-select" aria-label="Default select example"id="case_type_list" name="case_type_list">
                 <option selected>Case Type</option>
                 <option value="Corporate">Corporate</option>
@@ -104,7 +103,9 @@ $('#caseList').DataTable({});
     </div>
     </div>
   </div>
-</div> 
+</div>  
+
+
 
 
 
@@ -129,7 +130,7 @@ $('#caseList').DataTable({});
         ?> 
             
             <div class="col">
-                Client name:
+          
                  <select class="form-select" aria-label="Default select example" id="select_lawyer_id" name="select_lawyer_id">
                  <option >Select Lawyer Name</option>
                  <?php   while($row = mysqli_fetch_array($result)):;?>
@@ -155,6 +156,7 @@ $('#caseList').DataTable({});
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-warning">Save changes</button>
             </div> 
+       
         </div>
 
             </form>
@@ -271,23 +273,7 @@ $('#caseList').DataTable({});
         </div>
     </div>
 </div>
-<script src="./src/js/routing.js"></script>
-<script src="./ajaxscript/js/controller_case.js"></script>
-<script src="./ajaxscript/js/case_update.js"></script>
 
-<script>
-     $(document).ready(function() {
-    $('#cases_btn').addClass('selected');
-});
-
-</script>
-<script>
-    $(document).on('click','#assign_lawyer_Btn',function(e){
-        e.preventDefault(); 
-         var id =  $(this).val(); 
-       $("#assign_lawyer_Modal").modal('show');
-    });
-</script>  
 
 <script>
   $(document).on('click','#assign_lawyer_Btn',function(){ 
@@ -323,4 +309,24 @@ $.ajax({
 
 });   
 </script>
+
+<script src="./src/js/routing.js"></script>
+<script src="./ajaxscript/js/controller_case.js"></script>
+<script src="./ajaxscript/js/case_update.js"></script>
+
+<script>
+     $(document).ready(function() {
+    $('#cases_btn').addClass('selected');
+});
+
+</script>
+<script>
+    $(document).on('click','#assign_lawyer_Btn',function(e){
+        e.preventDefault(); 
+         var id =  $(this).val(); 
+       $("#assign_lawyer_Modal").modal('show');
+    });
+</script>  
+
+
 
