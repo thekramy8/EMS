@@ -6,7 +6,7 @@ include '../db_connection.php';
 if (isset($_GET['user_id'])) {
     $userId = $_GET['user_id'];
     
-    $selectID = "SELECT * FROM tbl_client_list WHERE id=?";
+    $selectID = "SELECT * FROM tbl_client_list WHERE id= ?";
     $stmt = $conn->prepare($selectID);
     $stmt->bind_param("s", $userId);
     $stmt->execute();
